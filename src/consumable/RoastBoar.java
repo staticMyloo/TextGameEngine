@@ -1,4 +1,6 @@
 package consumable;
 
-public class RoastBoar {
+public class RoastBoar extends Food {
+
+
 }

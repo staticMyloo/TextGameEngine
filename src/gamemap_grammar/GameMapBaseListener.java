@@ -72,6 +72,30 @@ public class GameMapBaseListener implements GameMapListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEdge(GameMapParser.EdgeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTreasureItem(GameMapParser.TreasureItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTreasureItem(GameMapParser.TreasureItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPickup(GameMapParser.PickupContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPickup(GameMapParser.PickupContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

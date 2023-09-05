@@ -1,6 +1,8 @@
 package wieldables;
 
-public abstract class Wieldable {
+import pickups.Pickup;
+
+public abstract class Wieldable extends Pickup {
 
     private int ap;
     private int durability;

@@ -1,7 +1,9 @@
 
 package gameplay;
 
-public class World {
+import graph_components.Graph;
+
+public class World extends Graph {
     public enum PlayMode {battle, explore;}
 
     Player player;

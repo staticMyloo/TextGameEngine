@@ -1,4 +1,6 @@
 package consumable;
 
-public class Bread {
+public class Bread extends Food {
+
+
 }

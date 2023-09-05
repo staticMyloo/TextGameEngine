@@ -7,9 +7,17 @@ gamemap : 'MAP' '[' vertexList edgeList ']' ;
 vertexList : 'VERTICES' '[' vertex+ ']' ;
 edgeList : 'EDGES' '[' edge+ ']' ;
 
-vertex : 'VERTEX' '[' 'ID' '=' ID ',' 'NAME' '=' STRING ']' ;
+vertex : 'VERTEX' '['
+                    'ID' '=' ID ','
+                    'NAME' '=' STRING
+                    (',' 'TREASURE_CHEST' '=' '[' treasureItem ']' )?
+                    ']'
+                    ;
 edge : 'EDGE' '[' 'ID' '=' ID ',' 'START' '=' ID ',' 'END' '=' ID ']' ;
 
+treasureItem : pickup*;
+
+pickup: STRING;
 STRING : '"' ( ~["\n\r] )* '"' ;
 ID : [a-zA-Z][a-zA-Z0-9]* ;
 WS : [ \t\r\n]+ -> skip ;

@@ -22,7 +22,7 @@ public class Inventory
 		{
 			if(p!=null)
 			{
-				out+= p+",";
+				out += p+",";
 			}
 		}
 		if(out.isEmpty()) out = "nothing";
@@ -70,4 +70,5 @@ public class Inventory
 		return items;
 	}
 }
-*/
+
+ */

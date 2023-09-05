@@ -1,6 +1,7 @@
 package graph_components;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Graph {
 
@@ -33,7 +34,7 @@ public class Graph {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Graph {\n");
+        sb.append("Graph [\n");
 
         // Append vertices
         sb.append("  Vertices: [\n");
@@ -49,11 +50,17 @@ public class Graph {
         }
         sb.append("  ]\n");
 
-        sb.append("}");
+        sb.append("]");
 
         return sb.toString();
     }
 
+    public HashMap<String, Vertex> getVertices() {
+        return this.vertices;
+    }
 
+    public HashMap<String, Edge> getEdges() {
+        return edges;
+    }
 }
 

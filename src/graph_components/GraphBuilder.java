@@ -37,8 +37,9 @@ public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
     public Vertex visitVertex(GameMapParser.VertexContext ctx) {
         String id = ctx.ID().getText();
         String name = ctx.STRING().getText();
-        // Removing quotes from the string
         name = name.substring(1, name.length() - 1);
+
+
         Vertex vertex = new Vertex(id, name);
         graph.addVertex(vertex);
         return vertex;
