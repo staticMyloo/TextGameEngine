@@ -1,7 +1,7 @@
 package graph_components;
 
-import openable.TreasureChest;
-import openable.WarChest;
+import entity.pickups.openable.TreasureChest;
+import entity.pickups.openable.WarChest;
 
 import java.util.ArrayList;
 
@@ -46,6 +46,9 @@ public class Vertex {
         this.adjacentEdges.add(edge);
     }
 
+    public void spawnTreasureChest(TreasureChest chest) {
+        this.treasureChest = chest;
+    }
     public ArrayList<Edge> getAdjacentEdges() {
         return this.adjacentEdges;
     }

@@ -1,11 +1,14 @@
-package monsters;
+package entity.character.monsters;
 
-public abstract class Monster {
+import entity.character.Character;
+
+public abstract class Monster extends Character {
 
     private final int hp;
     private final int ap;
 
-    protected Monster(int hp, int ap) {
+    protected Monster(String description, int hp, int ap) {
+        super(description);
         this.hp = hp;
         this.ap = ap;
     }

@@ -1,6 +1,7 @@
 
 package gameplay;
 
+import entity.character.Player;
 import graph_components.Graph;
 
 public class World extends Graph {

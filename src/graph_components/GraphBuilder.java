@@ -1,10 +1,8 @@
 package graph_components;
 import gamemap_grammar.GameMapBaseVisitor;
 import gamemap_grammar.GameMapParser;
-import org.antlr.v4.runtime.tree.ErrorNode;
+import entity.pickups.openable.TreasureChest;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.RuleNode;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
 
@@ -37,10 +35,12 @@ public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
     public Vertex visitVertex(GameMapParser.VertexContext ctx) {
         String id = ctx.ID().getText();
         String name = ctx.STRING().getText();
-        name = name.substring(1, name.length() - 1);
-
-
         Vertex vertex = new Vertex(id, name);
+
+        GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
+        if(treasureItemContext != null) {
+            vertex.spawnTreasureChest(new TreasureChest("Treasure Chest"));
+        }
         graph.addVertex(vertex);
         return vertex;
     }

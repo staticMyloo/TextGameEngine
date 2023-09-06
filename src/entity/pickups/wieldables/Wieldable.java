@@ -1,6 +1,6 @@
-package wieldables;
+package entity.pickups.wieldables;
 
-import pickups.Pickup;
+import entity.pickups.Pickup;
 
 public abstract class Wieldable extends Pickup {
 

@@ -3,7 +3,7 @@ package gameplay;
 
 import java.util.ArrayList;
 
-import pickups.Pickup;
+import entity.pickups.Pickup;
 
 public class Inventory 
 {

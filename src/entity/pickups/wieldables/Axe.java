@@ -1,4 +1,4 @@
-package wieldables;
+package entity.pickups.wieldables;
 
 public class Axe extends Wieldable {
 

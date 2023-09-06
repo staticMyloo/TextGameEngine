@@ -16,7 +16,6 @@ vertex : 'VERTEX' '['
 edge : 'EDGE' '[' 'ID' '=' ID ',' 'START' '=' ID ',' 'END' '=' ID ']' ;
 
 treasureItem : pickup*;
-
 pickup: STRING;
 STRING : '"' ( ~["\n\r] )* '"' ;
 ID : [a-zA-Z][a-zA-Z0-9]* ;

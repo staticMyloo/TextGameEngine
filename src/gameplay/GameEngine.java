@@ -21,7 +21,7 @@ public class GameEngine
         GameMapLexer lexer = new GameMapLexer(CharStreams.fromString("MAP [\n" +
                 "    VERTICES [\n" +
                 "        VERTEX [ ID = room1 , NAME = \"room1\" ]\n" +
-                "        VERTEX [ ID = room2 , NAME = \"room2\" , TREASURE_CHEST = [ axe ] ]\n" +
+                "        VERTEX [ ID = room2 , NAME = \"room2\" , TREASURE_CHEST = [ \"axe\" ] ]\n" +
                 "    ]\n" +
                 "    EDGES [\n" +
                 "        EDGE [ ID = edge1 , START = room1, END = room2 ]\n" +
