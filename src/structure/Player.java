@@ -19,12 +19,16 @@ public class Player extends Character
 
     @Override
     public int dealAttackDamage() {
-        return 0;
+        int damageInstance = currentWeapon.hit();
+        return damageInstance + (damageInstance * confidence / 100);
     }
 
     @Override
     public int defendAttack(Character enemy) {
-        return 0;
+        int damageInstance = enemy.dealAttackDamage();
+        setHp(damageInstance - getHp());
+        setConfidence(damageInstance/2);
+        return damageInstance;
     }
 
     public int getConfidence() {
