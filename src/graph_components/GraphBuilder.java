@@ -1,7 +1,7 @@
 package graph_components;
 import gamemap_grammar.GameMapBaseVisitor;
 import gamemap_grammar.GameMapParser;
-import entity.pickups.openable.TreasureChest;
+import structure.TreasureChest;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class GraphBuilder extends GameMapBaseVisitor<Vertex> {

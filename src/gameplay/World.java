@@ -1,7 +1,7 @@
 
 package gameplay;
 
-import entity.character.Player;
+import structure.Player;
 import graph_components.Graph;
 
 public class World extends Graph {
@@ -9,11 +9,7 @@ public class World extends Graph {
 
     Player player;
     PlayMode mode;
-
-
-
-
-
+    
     //--------------------------------------------------------
     public void onEnterRoom()
 	{

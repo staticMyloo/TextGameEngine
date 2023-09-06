@@ -1,7 +1,7 @@
 package graph_components;
 
-import entity.pickups.openable.TreasureChest;
-import entity.pickups.openable.WarChest;
+import structure.TreasureChest;
+import structure.WarChest;
 
 import java.util.ArrayList;
 
