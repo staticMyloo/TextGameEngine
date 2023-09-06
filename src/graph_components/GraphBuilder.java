@@ -1,20 +1,21 @@
 package graph_components;
 import gamemap_grammar.GameMapBaseVisitor;
 import gamemap_grammar.GameMapParser;
+import structure.Inventory;
 import structure.TreasureChest;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
+public class GraphBuilder extends GameMapBaseVisitor<Room> {
 
     private final Graph graph = new Graph();
 
     @Override
-    public Vertex visitGamemap(GameMapParser.GamemapContext ctx) {
+    public Room visitGamemap(GameMapParser.GamemapContext ctx) {
         return super.visitGamemap(ctx);
     }
 
     @Override
-    public Vertex visitVertexList(GameMapParser.VertexListContext ctx) {
+    public Room visitRoomList(GameMapParser.RoomListContext ctx) {
         for (ParseTree tree : ctx.children) {
             visit(tree);
         }
@@ -23,7 +24,7 @@ public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
     }
 
     @Override
-    public Vertex visitEdgeList(GameMapParser.EdgeListContext ctx) {
+    public Room visitEdgeList(GameMapParser.EdgeListContext ctx) {
         for (ParseTree tree : ctx.children) {
             visit(tree);
         }
@@ -32,33 +33,35 @@ public class GraphBuilder extends GameMapBaseVisitor<Vertex> {
     }
 
     @Override
-    public Vertex visitVertex(GameMapParser.VertexContext ctx) {
-        String id = ctx.ID().getText();
-        String name = ctx.STRING().getText();
-        Vertex vertex = new Vertex(id, name);
+    public Room visitRoom(GameMapParser.RoomContext ctx) {
+        String desc = ctx.roomName().getText();
+        System.out.println(desc);
+        Room room = new Room(desc, new Inventory(), new Room[4]);
 
         GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
         if(treasureItemContext != null) {
-            vertex.spawnTreasureChest(new TreasureChest("Treasure Chest"));
+            room.spawnTreasureChest(new TreasureChest("Treasure Chest"));
         }
-        graph.addVertex(vertex);
-        return vertex;
+
+        graph.addRoom(room);
+
+        return room;
     }
 
     @Override
-    public Vertex visitEdge(GameMapParser.EdgeContext ctx) {
+    public Room visitEdge(GameMapParser.EdgeContext ctx) {
         String id = ctx.ID(0).getText();
         String start = ctx.ID(1).getText();
         String end = ctx.ID(2).getText();
+        System.out.println(graph.getRoomMap());
+        Room startR = graph.getRoom(start);
+        Room endR = graph.getRoom(end);
 
-        Vertex startV = graph.getVertex(start);
-        Vertex endV = graph.getVertex(end);
-
-        if(startV == null | endV == null) {
+        if(startR == null | endR == null) {
             throw new IllegalArgumentException("Invalid edge: source or destination vertex does not exist");
         }
 
-        Edge newEdge = new Edge(id, startV, endV);
+        Edge newEdge = new Edge(id, startR, endR);
         graph.addEdge(newEdge);
         return null;
     }

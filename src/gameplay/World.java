@@ -1,15 +1,14 @@
 
 package gameplay;
-
-import structure.Player;
+import structure.*;
 import graph_components.Graph;
 
-public class World extends Graph {
+public class World {
     public enum PlayMode {battle, explore;}
 
     Player player;
     PlayMode mode;
-    
+
     //--------------------------------------------------------
     public void onEnterRoom()
 	{

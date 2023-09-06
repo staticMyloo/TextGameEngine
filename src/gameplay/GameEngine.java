@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import structure.Player;
 
 public class GameEngine
 {
@@ -16,12 +17,13 @@ public class GameEngine
         //read the World object instance from a text file or literal
         //World world = ReadWorldDataFile.basicWorld();
 
-        //Player playerOne = new Player("Sir Kendric",100,50);
+        Player playerOne = new Player("Sir Kendric",100,50);
         //world.play(playerOne);
+        System.out.println(playerOne.getInventory().getItems());
         GameMapLexer lexer = new GameMapLexer(CharStreams.fromString("MAP [\n" +
-                "    VERTICES [\n" +
-                "        VERTEX [ ID = room1 , NAME = \"room1\" ]\n" +
-                "        VERTEX [ ID = room2 , NAME = \"room2\" , TREASURE_CHEST = [ \"axe\" ] ]\n" +
+                "    ROOMS [\n" +
+                "        ROOM [ DESC = room1 ]\n" +
+                "        ROOM [ DESC = room2 , TREASURE_CHEST = [ \"axe\" ] ]\n" +
                 "    ]\n" +
                 "    EDGES [\n" +
                 "        EDGE [ ID = edge1 , START = room1, END = room2 ]\n" +
@@ -32,10 +34,10 @@ public class GameEngine
         ParseTree tree = parser.gamemap();
         GraphBuilder gb = new GraphBuilder();
         gb.visit(tree);
-
+        gb.getGraph().addAdjacentRooms();
+        //System.out.println(gb.getGraph().getRoomMap());
+        //System.out.println(gb.getGraph().getEdges());
         System.out.println(gb.getGraph());
-
-
     }
 
 }

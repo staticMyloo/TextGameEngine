@@ -1,21 +1,21 @@
 grammar GameMap;
 
 /** the start rule, begin parsing here **/
-gamemap : 'MAP' '[' vertexList edgeList ']' ;
+gamemap : 'MAP' '[' roomList edgeList ']' ;
 
 //Vertices (Rooms inside the world)
-vertexList : 'VERTICES' '[' vertex+ ']' ;
+roomList : 'ROOMS' '[' room+ ']' ;
 edgeList : 'EDGES' '[' edge+ ']' ;
 
-vertex : 'VERTEX' '['
-                    'ID' '=' ID ','
-                    'NAME' '=' STRING
+room : 'ROOM' '['
+                    'DESC' '=' roomName
                     (',' 'TREASURE_CHEST' '=' '[' treasureItem ']' )?
                     ']'
                     ;
 edge : 'EDGE' '[' 'ID' '=' ID ',' 'START' '=' ID ',' 'END' '=' ID ']' ;
 
 treasureItem : pickup*;
+roomName: ID;
 pickup: STRING;
 STRING : '"' ( ~["\n\r] )* '"' ;
 ID : [a-zA-Z][a-zA-Z0-9]* ;

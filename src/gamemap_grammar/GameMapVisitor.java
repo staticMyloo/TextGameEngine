@@ -17,11 +17,11 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGamemap(GameMapParser.GamemapContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GameMapParser#vertexList}.
+	 * Visit a parse tree produced by {@link GameMapParser#roomList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVertexList(GameMapParser.VertexListContext ctx);
+	T visitRoomList(GameMapParser.RoomListContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GameMapParser#edgeList}.
 	 * @param ctx the parse tree
@@ -29,11 +29,11 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEdgeList(GameMapParser.EdgeListContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GameMapParser#vertex}.
+	 * Visit a parse tree produced by {@link GameMapParser#room}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVertex(GameMapParser.VertexContext ctx);
+	T visitRoom(GameMapParser.RoomContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GameMapParser#edge}.
 	 * @param ctx the parse tree
@@ -46,6 +46,12 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTreasureItem(GameMapParser.TreasureItemContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GameMapParser#roomName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRoomName(GameMapParser.RoomNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GameMapParser#pickup}.
 	 * @param ctx the parse tree

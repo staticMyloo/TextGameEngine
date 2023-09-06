@@ -29,13 +29,13 @@ public class GameMapBaseListener implements GameMapListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVertexList(GameMapParser.VertexListContext ctx) { }
+	@Override public void enterRoomList(GameMapParser.RoomListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVertexList(GameMapParser.VertexListContext ctx) { }
+	@Override public void exitRoomList(GameMapParser.RoomListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -53,13 +53,13 @@ public class GameMapBaseListener implements GameMapListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVertex(GameMapParser.VertexContext ctx) { }
+	@Override public void enterRoom(GameMapParser.RoomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVertex(GameMapParser.VertexContext ctx) { }
+	@Override public void exitRoom(GameMapParser.RoomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -84,6 +84,18 @@ public class GameMapBaseListener implements GameMapListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTreasureItem(GameMapParser.TreasureItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRoomName(GameMapParser.RoomNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRoomName(GameMapParser.RoomNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

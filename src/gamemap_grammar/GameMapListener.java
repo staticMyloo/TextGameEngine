@@ -18,15 +18,15 @@ public interface GameMapListener extends ParseTreeListener {
 	 */
 	void exitGamemap(GameMapParser.GamemapContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GameMapParser#vertexList}.
+	 * Enter a parse tree produced by {@link GameMapParser#roomList}.
 	 * @param ctx the parse tree
 	 */
-	void enterVertexList(GameMapParser.VertexListContext ctx);
+	void enterRoomList(GameMapParser.RoomListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GameMapParser#vertexList}.
+	 * Exit a parse tree produced by {@link GameMapParser#roomList}.
 	 * @param ctx the parse tree
 	 */
-	void exitVertexList(GameMapParser.VertexListContext ctx);
+	void exitRoomList(GameMapParser.RoomListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GameMapParser#edgeList}.
 	 * @param ctx the parse tree
@@ -38,15 +38,15 @@ public interface GameMapListener extends ParseTreeListener {
 	 */
 	void exitEdgeList(GameMapParser.EdgeListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GameMapParser#vertex}.
+	 * Enter a parse tree produced by {@link GameMapParser#room}.
 	 * @param ctx the parse tree
 	 */
-	void enterVertex(GameMapParser.VertexContext ctx);
+	void enterRoom(GameMapParser.RoomContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GameMapParser#vertex}.
+	 * Exit a parse tree produced by {@link GameMapParser#room}.
 	 * @param ctx the parse tree
 	 */
-	void exitVertex(GameMapParser.VertexContext ctx);
+	void exitRoom(GameMapParser.RoomContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GameMapParser#edge}.
 	 * @param ctx the parse tree
@@ -67,6 +67,16 @@ public interface GameMapListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTreasureItem(GameMapParser.TreasureItemContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GameMapParser#roomName}.
+	 * @param ctx the parse tree
+	 */
+	void enterRoomName(GameMapParser.RoomNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GameMapParser#roomName}.
+	 * @param ctx the parse tree
+	 */
+	void exitRoomName(GameMapParser.RoomNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GameMapParser#pickup}.
 	 * @param ctx the parse tree

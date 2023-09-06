@@ -3,36 +3,36 @@ package graph_components;
 public class Edge {
 
     private final String id;
-    private final Vertex startVertex;
-    private final Vertex endVertex;
+    private final Room startRoom;
+    private final Room endRoom;
 
-    public Edge(String id, Vertex startVertex, Vertex endVertex) {
+    public Edge(String id, Room startRoom, Room endRoom) {
         this.id = id;
-        this.startVertex = startVertex;
-        this.endVertex = endVertex;
+        this.startRoom = startRoom;
+        this.endRoom = endRoom;
     }
 
     public Edge() {
         this.id = null;
-        this.startVertex = null;
-        this.endVertex = null;
+        this.startRoom = null;
+        this.endRoom = null;
     }
 
     public String getId() {
         return this.id;
     }
 
-    public Vertex getStartVertex() {
-        return this.startVertex;
+    public Room getStartRoom() {
+        return this.startRoom;
     }
 
-    public Vertex getEndVertex() {
-        return this.endVertex;
+    public Room getEndRoom() {
+        return this.endRoom;
     }
 
     @Override
     public String toString() {
-        return id + " " + startVertex + " " + endVertex;
+        return id + " " + startRoom + " " + endRoom;
     }
 
 }

@@ -15,6 +15,7 @@ public class Player extends Character
         super("Player", hp);
         this.name = name;
         this.setConfidence(confidence);
+        this.inventory = new Inventory();
     }
 
     @Override
@@ -33,6 +34,10 @@ public class Player extends Character
 
     public int getConfidence() {
         return confidence;
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     public void setConfidence(int confidence) {
