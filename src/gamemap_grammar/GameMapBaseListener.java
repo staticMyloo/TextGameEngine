@@ -77,6 +77,18 @@ public class GameMapBaseListener implements GameMapListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterWieldable(GameMapParser.WieldableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWieldable(GameMapParser.WieldableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTreasureItem(GameMapParser.TreasureItemContext ctx) { }
 	/**
 	 * {@inheritDoc}

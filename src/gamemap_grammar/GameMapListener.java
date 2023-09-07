@@ -58,6 +58,16 @@ public interface GameMapListener extends ParseTreeListener {
 	 */
 	void exitEdge(GameMapParser.EdgeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GameMapParser#wieldable}.
+	 * @param ctx the parse tree
+	 */
+	void enterWieldable(GameMapParser.WieldableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GameMapParser#wieldable}.
+	 * @param ctx the parse tree
+	 */
+	void exitWieldable(GameMapParser.WieldableContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GameMapParser#treasureItem}.
 	 * @param ctx the parse tree
 	 */

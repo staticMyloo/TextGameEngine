@@ -41,6 +41,12 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEdge(GameMapParser.EdgeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GameMapParser#wieldable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWieldable(GameMapParser.WieldableContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GameMapParser#treasureItem}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

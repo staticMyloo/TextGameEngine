@@ -16,6 +16,7 @@ public class Room extends Entity {
     private Room[] connectingRooms;
     private String roomName;
     private final int MAX_ROOM_SIZE = 4;
+    private boolean endRoom = false;
 
     public Room(String id) {
         super(id);
@@ -39,6 +40,9 @@ public class Room extends Entity {
         this.adjacentEdges.add(edge);
     }
 
+    public void setEndRoom() {
+        this.endRoom = true;
+    }
     public void addAdjacentRoom(Room room) {
         if(connectingRooms == null) {
             connectingRooms = new Room[MAX_ROOM_SIZE];
@@ -53,8 +57,15 @@ public class Room extends Entity {
 
     }
 
+    public Room[] getConnectingRooms() {
+        return connectingRooms;
+    }
     public void spawnTreasureChest(TreasureChest chest) {
         this.treasureChest = chest;
+    }
+
+    public void spawnWarChest(WarChest chest) {
+        this.warChest = chest;
     }
     public ArrayList<Edge> getAdjacentEdges() {
         return this.adjacentEdges;
@@ -74,9 +85,14 @@ public class Room extends Entity {
             }
             room.append("]");
         }
-
+        if(endRoom) {
+            room.append("End Room");
+        }
         if (treasureChest != null) {
-            room.append(" []");
+            room.append(treasureChest);
+        }
+        if(warChest !=null) {
+            room.append(warChest);
         }
 
         return room.toString();
