@@ -11,7 +11,6 @@ import structure.Player;
 
 public class GameEngine
 {
-
     public static void main(String[] args)
     {
         //read the World object instance from a text file or literal

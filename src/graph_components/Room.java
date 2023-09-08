@@ -1,28 +1,22 @@
 package graph_components;
 
-import structure.Entity;
-import structure.Inventory;
-import structure.TreasureChest;
-import structure.WarChest;
+import structure.*;
 
 import java.util.ArrayList;
 
 public class Room extends Entity {
 
     private ArrayList<Edge> adjacentEdges = null;
-    private TreasureChest treasureChest;
-    private WarChest warChest = null;
     private Inventory roomItems;
     private Room[] connectingRooms;
     private String roomName;
     private final int MAX_ROOM_SIZE = 4;
     private boolean endRoom = false;
+    private ArrayList<Monster> monsters;
 
     public Room(String id) {
         super(id);
         this.adjacentEdges = new ArrayList<>();
-        this.treasureChest = null;
-        this.warChest = null;
     }
 
     public Room(String roomName, Inventory roomItems, Room[] connectingRooms) {
@@ -30,8 +24,15 @@ public class Room extends Entity {
         this.roomName = roomName;
         this.roomItems = roomItems;
         this.connectingRooms = connectingRooms;
+        this.monsters = new ArrayList<>();
     }
 
+    public boolean isEndRoom() {
+        return this.endRoom;
+    }
+    public ArrayList<Monster> getMonsters() {
+        return this.monsters;
+    }
     public String getRoomName() {
         return this.roomName;
     }
@@ -57,45 +58,29 @@ public class Room extends Entity {
 
     }
 
+
+
     public Room[] getConnectingRooms() {
         return connectingRooms;
     }
     public void spawnTreasureChest(TreasureChest chest) {
-        this.treasureChest = chest;
+        this.roomItems.add(chest);
     }
 
     public void spawnWarChest(WarChest chest) {
-        this.warChest = chest;
+        this.roomItems.add(chest);
     }
     public ArrayList<Edge> getAdjacentEdges() {
         return this.adjacentEdges;
     }
 
+    public Inventory getRoomItems() {
+        return this.roomItems;
+    }
+
     @Override
     public String toString() {
-        StringBuilder room = new StringBuilder();
-        room.append(getRoomName());
-
-        if(connectingRooms != null) {
-            room.append(" -> [");
-            for (Room r : connectingRooms) {
-                if (r != null) {
-                    room.append(r.getRoomName()).append(", ");
-                }
-            }
-            room.append("]");
-        }
-        if(endRoom) {
-            room.append("End Room");
-        }
-        if (treasureChest != null) {
-            room.append(treasureChest);
-        }
-        if(warChest !=null) {
-            room.append(warChest);
-        }
-
-        return room.toString();
+        return getRoomName().substring(4);
     }
 
 

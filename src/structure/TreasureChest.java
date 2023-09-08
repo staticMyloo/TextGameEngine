@@ -27,10 +27,4 @@ public class TreasureChest extends Openable {
         return chestItems;
     }
 
-    @Override
-    public String toString() {
-        return "[" + (chestItems) + "]";
-    }
-
-
 }

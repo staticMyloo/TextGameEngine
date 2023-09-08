@@ -1,4 +1,4 @@
-// Generated from /Users/kjohnson/Archive/Teaching/2023-Teaching/COMP711/Assessments/Software Project/TextGameEngine/TextGameEngine/src/PlayerCommand.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/Desktop/TextGameEngine/src\PlayerCommand.g4 by ANTLR 4.12.0
 package playercommand_grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -16,4 +16,16 @@ public interface PlayerCommandVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCommand(PlayerCommandParser.CommandContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayerCommandParser#exploreCommand}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExploreCommand(PlayerCommandParser.ExploreCommandContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayerCommandParser#battleCommand}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBattleCommand(PlayerCommandParser.BattleCommandContext ctx);
 }

@@ -1,6 +1,9 @@
 
 package gameplay;
 import graph_components.Room;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.Token;
+import playercommand_grammar.PlayerCommandLexer;
 import structure.*;
 import graph_components.Graph;
 
@@ -43,65 +46,182 @@ public class World {
     //--------------------------------------------------------
     public void onEnterRoom()
 	{
-        //user to input playmode here
-        //need to define play grammar
-        //
+        Zombie zombie = new Zombie("Zombie", 10, 5, 40);
+        if(zombie.appear()) { currentRoom.getMonsters().add(zombie); }
+
+        if(!currentRoom.getMonsters().isEmpty()) {
+            this.mode = PlayMode.battle;
+        } else {
+            this.mode = PlayMode.explore;
+        }
 	}
     //--------------------------------------------------------
-    public void play(Player player)
-    {
-        System.out.println("Starting at "+startRoom+" End room is" + endRoom);
+    public void play(Player player) {
         this.player = player;
         System.out.println("Welcome player " + player);
-
-        System.out.println(player);
+        System.out.println("Starting at [" + startRoom + "] End room is [" + endRoom + "]");
         this.onEnterRoom();
 
         boolean gameInProgress = true;
         while (gameInProgress) {
-            //switch (this.mode) {
-            //    case explore:
-            //        //processExploreUserInput();
-            //        break;
-            //    case battle:
-            //        //processBattleUserInput();
-            //        break;
-                exploreRoom();
+            switch (this.mode) {
+                case explore -> {
+                    processExploreUserInput();
+                }
+                case battle -> {
+                    processBattleUserInput();
+                }
+
             }
 
         }
 
+    }
 
-    private void exploreRoom() {
-        System.out.println("Current room: "+currentRoom);
-        System.out.println("You see these doors: ");
+    private void processExploreUserInput() {
+        System.out.println("Choose action: (door n | pickup item | exit | describe | admire valuable | eat food | stats | wield weapon | open chest | help)");
+        String input = scanner.nextLine();
+        PlayerCommandLexer lexer = new PlayerCommandLexer(CharStreams.fromString(input));
+        Token token = lexer.nextToken();
+
+        while(token.getType() != Token.EOF) {
+            switch (token.getType()) {
+                case PlayerCommandLexer.DOOR -> {
+                    token = lexer.nextToken();
+                    if (token.getType() == PlayerCommandLexer.INT) {
+                        int door = Integer.parseInt(token.getText());
+                        moveToRoom(door);
+                        this.onEnterRoom();
+                    }
+                }
+                case PlayerCommandLexer.PICKUP -> {
+                    pickUpItem("Item");
+                    //iterate through inventory
+                    //place in players inventory
+                    //remove from room inventory
+                    token = lexer.nextToken();
+
+                }
+                case PlayerCommandLexer.EXIT -> {
+                    tryToExit();
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.DESCRIBE -> {
+                    describeRoom();
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.ADMIRE -> {
+                    admireValuable();
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.EAT -> {
+                    eatFood("Food");
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.STATS -> {
+                    displayPlayerStats();
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.WIELD -> {
+                    wieldWeapon();
+                    token = lexer.nextToken();
+                }
+                case PlayerCommandLexer.OPEN -> {
+                    tryToOpenChest();
+                    token = lexer.nextToken();
+                }
+                default -> {
+                    break;
+                }
+            }
+        }
+
+
+    }
+
+    private void tryToOpenChest() {
+        //try to open a chest in inventory
+        //place item in inventory
+        //consume lock etc.,
+    }
+
+    private void wieldWeapon() {
+        //wield a new weapon from players inventory
+    }
+    private void displayPlayerStats() {
+        //display current player stats
+    }
+    private void eatFood(String item) {
+
+    }
+    private void pickUpItem(String item) {
+
+    }
+    private void admireValuable() {
+        System.out.println("You are admiring a valuable");
+        //iterate inventory
+        //update confidence
+    }
+    private void moveToRoom(int n) {
         Room[] currentConnectingRooms = currentRoom.getConnectingRooms();
         int roomCount = 0;
         for(Room room : currentRoom.getConnectingRooms()) {
             if(room != null) {
-                System.out.println(roomCount + " " + room.getRoomName());
                 roomCount++;
             }
         }
+        if(n >= 0 && n < roomCount) {
+            currentRoom = currentConnectingRooms[n];
+        }
+    }
 
-        System.out.println("Move to next room? (enter index): ");
-        int roomIndex = scanner.nextInt();
-        scanner.nextLine();
+    private void tryToExit() {
+        if(currentRoom.isEndRoom()) {
 
-        if(roomIndex >= 0 && roomIndex < roomCount) {
-            currentRoom = currentConnectingRooms[roomIndex];
-            System.out.println("You moved to "+currentRoom.getRoomName());
         } else {
-            System.out.println("Error with input");
+            System.out.println("There is no exit in this room... Keep going!");
+        }
+    }
+
+    private void processBattleUserInput() {
+        System.out.println("A monster appeared! Entering battle mode!");
+    }
+
+    private void describeRoom() {
+
+        int roomCount = 0;
+        for(int i = 0; i < currentRoom.getConnectingRooms().length; i++) {
+            if(currentRoom.getConnectingRooms()[i] != null) {
+                roomCount++;
+            }
+        }
+        System.out.println("=================================");
+        System.out.println("| You see "+roomCount+" doors");
+        if(roomCount > 0) {
+            for(int i = 0; i < currentRoom.getConnectingRooms().length; i++) {
+                if(currentRoom.getConnectingRooms()[i] != null) {
+                    System.out.print("Room Number "+i+": ["+currentRoom.getConnectingRooms()[i]+"]");
+                }
+            }
+            System.out.println();
         }
 
-
-
-
-
-
+        System.out.println("You look for items in the room...");
+        if(!currentRoom.getRoomItems().isEmpty()) {
+            System.out.println("You see the following...");
+            for(Pickup pickup : currentRoom.getRoomItems().getItems()) {
+                System.out.println(pickup+" ");
+            }
+        } else {
+            System.out.println("You don't see anything...");
+        }
+        System.out.println("=================================");
     }
+
+
     //--------------------------------------------------------
 
     //--------------------------------------------------------
 }
+
+

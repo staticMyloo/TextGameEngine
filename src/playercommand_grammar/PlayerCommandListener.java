@@ -1,4 +1,4 @@
-// Generated from /Users/kjohnson/Archive/Teaching/2023-Teaching/COMP711/Assessments/Software Project/TextGameEngine/TextGameEngine/src/PlayerCommand.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/Desktop/TextGameEngine/src\PlayerCommand.g4 by ANTLR 4.12.0
 package playercommand_grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -17,4 +17,24 @@ public interface PlayerCommandListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCommand(PlayerCommandParser.CommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayerCommandParser#exploreCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterExploreCommand(PlayerCommandParser.ExploreCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayerCommandParser#exploreCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitExploreCommand(PlayerCommandParser.ExploreCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayerCommandParser#battleCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterBattleCommand(PlayerCommandParser.BattleCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayerCommandParser#battleCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitBattleCommand(PlayerCommandParser.BattleCommandContext ctx);
 }

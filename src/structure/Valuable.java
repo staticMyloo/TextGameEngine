@@ -11,5 +11,6 @@ public class Valuable extends Consumable {
     protected int getValue() {
         return value;
     }
+
 }
 

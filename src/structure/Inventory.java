@@ -25,6 +25,11 @@ public class Inventory
 		if(out.isEmpty()) out = "nothing";
 		return out;
 	}
+
+	public boolean isEmpty() {
+		return this.items.isEmpty();
+	}
+
 	//------------------------------------
 	public Pickup remove(String id)
 	{

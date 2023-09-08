@@ -1,4 +1,4 @@
-// Generated from /Users/kjohnson/Archive/Teaching/2023-Teaching/COMP711/Assessments/Software Project/TextGameEngine/TextGameEngine/src/PlayerCommand.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/Desktop/TextGameEngine/src\PlayerCommand.g4 by ANTLR 4.12.0
 package playercommand_grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,6 +24,30 @@ public class PlayerCommandBaseListener implements PlayerCommandListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCommand(PlayerCommandParser.CommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExploreCommand(PlayerCommandParser.ExploreCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExploreCommand(PlayerCommandParser.ExploreCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBattleCommand(PlayerCommandParser.BattleCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBattleCommand(PlayerCommandParser.BattleCommandContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

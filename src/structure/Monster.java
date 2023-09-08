@@ -31,4 +31,9 @@ public abstract class Monster extends Character {
         setHp(getHp() - d);
         return d;
     }
+
+    @Override
+    public String toString() {
+        return getDescription() + " Hp:" + getHp() + " Ap:"+ap;
+    }
 }

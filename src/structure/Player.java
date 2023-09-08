@@ -47,4 +47,10 @@ public class Player extends Character
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + getHp() + " " + getConfidence();
+    }
+
 }

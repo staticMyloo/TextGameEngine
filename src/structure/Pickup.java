@@ -11,4 +11,9 @@ public abstract class Pickup extends Entity {
     protected boolean compareID(String s) {
         return super.compareID(s);
     }
+
+    @Override
+    public String toString() {
+        return this.getDescription();
+    }
 }
