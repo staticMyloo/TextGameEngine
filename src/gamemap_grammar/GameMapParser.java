@@ -18,8 +18,8 @@ public class GameMapParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, WAR_ITEM=17, 
-		TREASURE_ITEM=18, STRING=19, BOOLEAN=20, ID=21, WS=22, NEWLINE=23;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, CHEST=17, 
+		WAR_ITEM=18, TREASURE_ITEM=19, STRING=20, END_ROOM=21, ID=22, WS=23, NEWLINE=24;
 	public static final int
 		RULE_gamemap = 0, RULE_roomList = 1, RULE_edgeList = 2, RULE_room = 3, 
 		RULE_edge = 4, RULE_wieldable = 5, RULE_treasureItem = 6, RULE_roomName = 7, 
@@ -43,8 +43,8 @@ public class GameMapParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, "WAR_ITEM", "TREASURE_ITEM", "STRING", 
-			"BOOLEAN", "ID", "WS", "NEWLINE"
+			null, null, null, null, null, "CHEST", "WAR_ITEM", "TREASURE_ITEM", "STRING", 
+			"END_ROOM", "ID", "WS", "NEWLINE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -299,7 +299,7 @@ public class GameMapParser extends Parser {
 		public WieldableContext wieldable() {
 			return getRuleContext(WieldableContext.class,0);
 		}
-		public TerminalNode BOOLEAN() { return getToken(GameMapParser.BOOLEAN, 0); }
+		public TerminalNode END_ROOM() { return getToken(GameMapParser.END_ROOM, 0); }
 		public RoomContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -388,7 +388,7 @@ public class GameMapParser extends Parser {
 				setState(67);
 				match(T__7);
 				setState(68);
-				match(BOOLEAN);
+				match(END_ROOM);
 				}
 			}
 
@@ -516,7 +516,7 @@ public class GameMapParser extends Parser {
 			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==WAR_ITEM || _la==TREASURE_ITEM) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 917504L) != 0)) {
 				{
 				{
 				setState(88);
@@ -577,7 +577,7 @@ public class GameMapParser extends Parser {
 			setState(97);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==WAR_ITEM || _la==TREASURE_ITEM) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 917504L) != 0)) {
 				{
 				{
 				setState(94);
@@ -648,6 +648,7 @@ public class GameMapParser extends Parser {
 	public static class PickupContext extends ParserRuleContext {
 		public TerminalNode TREASURE_ITEM() { return getToken(GameMapParser.TREASURE_ITEM, 0); }
 		public TerminalNode WAR_ITEM() { return getToken(GameMapParser.WAR_ITEM, 0); }
+		public TerminalNode CHEST() { return getToken(GameMapParser.CHEST, 0); }
 		public PickupContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -676,7 +677,7 @@ public class GameMapParser extends Parser {
 			{
 			setState(102);
 			_la = _input.LA(1);
-			if ( !(_la==WAR_ITEM || _la==TREASURE_ITEM) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 917504L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -698,7 +699,7 @@ public class GameMapParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0017i\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0018i\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000"+
@@ -716,7 +717,7 @@ public class GameMapParser extends Parser {
 		"\u0005Z\b\u0005\n\u0005\f\u0005]\t\u0005\u0001\u0006\u0005\u0006`\b\u0006"+
 		"\n\u0006\f\u0006c\t\u0006\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001"+
 		"\b\u0000\u0000\t\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0000\u0001"+
-		"\u0001\u0000\u0011\u0012f\u0000\u0012\u0001\u0000\u0000\u0000\u0002\u0018"+
+		"\u0001\u0000\u0011\u0013f\u0000\u0012\u0001\u0000\u0000\u0000\u0002\u0018"+
 		"\u0001\u0000\u0000\u0000\u0004!\u0001\u0000\u0000\u0000\u0006*\u0001\u0000"+
 		"\u0000\u0000\bI\u0001\u0000\u0000\u0000\n[\u0001\u0000\u0000\u0000\fa"+
 		"\u0001\u0000\u0000\u0000\u000ed\u0001\u0000\u0000\u0000\u0010f\u0001\u0000"+
@@ -741,19 +742,19 @@ public class GameMapParser extends Parser {
 		"\u0002\u0000\u0000<=\u0003\n\u0005\u0000=>\u0005\u0003\u0000\u0000>@\u0001"+
 		"\u0000\u0000\u0000?8\u0001\u0000\u0000\u0000?@\u0001\u0000\u0000\u0000"+
 		"@E\u0001\u0000\u0000\u0000AB\u0005\t\u0000\u0000BC\u0005\f\u0000\u0000"+
-		"CD\u0005\b\u0000\u0000DF\u0005\u0014\u0000\u0000EA\u0001\u0000\u0000\u0000"+
+		"CD\u0005\b\u0000\u0000DF\u0005\u0015\u0000\u0000EA\u0001\u0000\u0000\u0000"+
 		"EF\u0001\u0000\u0000\u0000FG\u0001\u0000\u0000\u0000GH\u0005\u0003\u0000"+
 		"\u0000H\u0007\u0001\u0000\u0000\u0000IJ\u0005\r\u0000\u0000JK\u0005\u0002"+
-		"\u0000\u0000KL\u0005\u000e\u0000\u0000LM\u0005\b\u0000\u0000MN\u0005\u0015"+
+		"\u0000\u0000KL\u0005\u000e\u0000\u0000LM\u0005\b\u0000\u0000MN\u0005\u0016"+
 		"\u0000\u0000NO\u0005\t\u0000\u0000OP\u0005\u000f\u0000\u0000PQ\u0005\b"+
-		"\u0000\u0000QR\u0005\u0015\u0000\u0000RS\u0005\t\u0000\u0000ST\u0005\u0010"+
-		"\u0000\u0000TU\u0005\b\u0000\u0000UV\u0005\u0015\u0000\u0000VW\u0005\u0003"+
+		"\u0000\u0000QR\u0005\u0016\u0000\u0000RS\u0005\t\u0000\u0000ST\u0005\u0010"+
+		"\u0000\u0000TU\u0005\b\u0000\u0000UV\u0005\u0016\u0000\u0000VW\u0005\u0003"+
 		"\u0000\u0000W\t\u0001\u0000\u0000\u0000XZ\u0003\u0010\b\u0000YX\u0001"+
 		"\u0000\u0000\u0000Z]\u0001\u0000\u0000\u0000[Y\u0001\u0000\u0000\u0000"+
 		"[\\\u0001\u0000\u0000\u0000\\\u000b\u0001\u0000\u0000\u0000][\u0001\u0000"+
 		"\u0000\u0000^`\u0003\u0010\b\u0000_^\u0001\u0000\u0000\u0000`c\u0001\u0000"+
 		"\u0000\u0000a_\u0001\u0000\u0000\u0000ab\u0001\u0000\u0000\u0000b\r\u0001"+
-		"\u0000\u0000\u0000ca\u0001\u0000\u0000\u0000de\u0005\u0015\u0000\u0000"+
+		"\u0000\u0000\u0000ca\u0001\u0000\u0000\u0000de\u0005\u0016\u0000\u0000"+
 		"e\u000f\u0001\u0000\u0000\u0000fg\u0007\u0000\u0000\u0000g\u0011\u0001"+
 		"\u0000\u0000\u0000\u0007\u001d&6?E[a";
 	public static final ATN _ATN =

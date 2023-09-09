@@ -17,7 +17,10 @@ public abstract class Entity {
     }
 
     protected boolean compareID(String s) {
-        return s.equals(this.id);
+        if(this.id == null) {
+            return false;
+        }
+        return this.id.trim().equalsIgnoreCase(s);
     }
 
     public String getId() {

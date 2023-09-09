@@ -58,6 +58,4 @@ public class ReadWorldDataFile
 
         return new World(gb.getGraph());
     }
-
-
 }

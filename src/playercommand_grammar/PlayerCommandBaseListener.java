@@ -48,6 +48,18 @@ public class PlayerCommandBaseListener implements PlayerCommandListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBattleCommand(PlayerCommandParser.BattleCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterItem(PlayerCommandParser.ItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitItem(PlayerCommandParser.ItemContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

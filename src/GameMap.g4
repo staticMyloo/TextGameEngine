@@ -19,8 +19,9 @@ edge : 'EDGE' '[' 'ID' '=' ID ',' 'START' '=' ID ',' 'END' '=' ID ']' ;
 wieldable : pickup*;
 treasureItem : pickup*;
 roomName: ID;
-pickup: TREASURE_ITEM | WAR_ITEM;
+pickup: TREASURE_ITEM | WAR_ITEM | CHEST;
 
+CHEST : 'WarChest' | 'TreasureChest';
 WAR_ITEM : 'Axe' | 'Sword' ;
 TREASURE_ITEM : 'Ring' | 'Jewel' | 'Goldbars' ;
 STRING : '"' ( ~["\n\r] )* '"' ;

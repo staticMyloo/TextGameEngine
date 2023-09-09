@@ -38,7 +38,7 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
     public Room visitRoom(GameMapParser.RoomContext ctx) {
         String desc = ctx.roomName().getText();
         Room room = new Room(desc, new Inventory(), new Room[4]);
-        if(ctx.BOOLEAN() != null) {
+        if(ctx.END_ROOM() != null) {
             room.setEndRoom();
         }
         GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
@@ -49,7 +49,7 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
                 String itemType = pickups.get(i).TREASURE_ITEM().getText();
                 pickupArray[i] = (Pickup) createNewItem(itemType);
             }
-            room.spawnTreasureChest(new TreasureChest("Treasure Chest", pickupArray));
+            room.spawnTreasureChest(new TreasureChest("TreasureChest", pickupArray));
         }
         GameMapParser.WieldableContext wieldableContext = ctx.wieldable();
         if(wieldableContext != null) {
@@ -59,7 +59,7 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
                 String itemType = pickups.get(i).WAR_ITEM().getText();
                 pickupArray[i] = (Pickup) createNewItem(itemType);
             }
-            room.spawnWarChest(new WarChest("War Chest", pickupArray));
+            room.spawnWarChest(new WarChest("WarChest", pickupArray));
         }
 
         graph.addRoom(room);

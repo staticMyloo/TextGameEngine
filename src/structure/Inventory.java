@@ -1,5 +1,7 @@
 package structure;
 
+import org.antlr.v4.codegen.model.ArgAction;
+
 import java.util.ArrayList;
 
 public class Inventory 
@@ -44,6 +46,7 @@ public class Inventory
 	{
 		for(Pickup p : this.items)
 		{
+			System.out.println("Item's ID: " + p.getId() + ", Given ID: " + id);
 			if (p!=null && p.compareID(id))
 			{
 				return p;
@@ -62,6 +65,11 @@ public class Inventory
 		this.items.remove(p);
 	}
 	//------------------------------------
+
+	public ArrayList<Pickup> getItemList() {
+		return this.items;
+	}
+
 	public Pickup[] getItems()
 	{
 		Pickup[] items = new Pickup[this.items.size()];

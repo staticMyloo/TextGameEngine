@@ -50,7 +50,7 @@ public class Player extends Character
 
     @Override
     public String toString() {
-        return name + " " + getHp() + " " + getConfidence();
+        return name + " Current Health: " + getHp() + " Current Confidence: " + getConfidence();
     }
 
 }

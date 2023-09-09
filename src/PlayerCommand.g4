@@ -6,15 +6,15 @@ grammar PlayerCommand;
 command : battleCommand | exploreCommand;
 
 exploreCommand
-    : DOOR INT
-    | PICKUP
+    : DOOR 'door' INT
+    | PICKUP item
     | EXIT
     | DESCRIBE
     | ADMIRE
     | EAT
     | STATS
     | WIELD
-    | OPEN
+    | OPEN item
     | HELP
     ;
 
@@ -23,7 +23,7 @@ battleCommand
     | WIELD
     | HELP;
 
-
+item : STRING+;
 //Explore Commands
 DOOR : 'door';
 PICKUP : 'pickup';
@@ -39,6 +39,8 @@ HELP : 'help';
 //Battle commands
 ATTACK : 'attack';
 
+
+STRING : [a-zA-Z]+ ;
 INT : [0-9]+ ;
 WS : [ \t\r\n]+ -> skip ;
 NEWLINE:'\r'? '\n' ;    // return newlines to parser (is end-statement signal)

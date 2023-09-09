@@ -28,4 +28,10 @@ public interface PlayerCommandVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBattleCommand(PlayerCommandParser.BattleCommandContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayerCommandParser#item}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitItem(PlayerCommandParser.ItemContext ctx);
 }
