@@ -18,7 +18,7 @@ public class PlayerCommandParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		DOOR=1, PICKUP=2, EXIT=3, DESCRIBE=4, ADMIRE=5, EAT=6, STATS=7, WIELD=8, 
-		OPEN=9, HELP=10, ATTACK=11, STRING=12, INT=13, WS=14, NEWLINE=15;
+		OPEN=9, HELP=10, FLEE=11, ATTACK=12, STRING=13, INT=14, WS=15, NEWLINE=16;
 	public static final int
 		RULE_command = 0, RULE_exploreCommand = 1, RULE_battleCommand = 2, RULE_item = 3;
 	private static String[] makeRuleNames() {
@@ -31,14 +31,14 @@ public class PlayerCommandParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'door'", "'pickup'", "'exit'", "'describe'", "'admire'", "'eat'", 
-			"'stats'", "'wield'", "'open'", "'help'", "'attack'"
+			"'stats'", "'wield'", "'open'", "'help'", "'flee'", "'attack'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "DOOR", "PICKUP", "EXIT", "DESCRIBE", "ADMIRE", "EAT", "STATS", 
-			"WIELD", "OPEN", "HELP", "ATTACK", "STRING", "INT", "WS", "NEWLINE"
+			"WIELD", "OPEN", "HELP", "FLEE", "ATTACK", "STRING", "INT", "WS", "NEWLINE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -295,6 +295,7 @@ public class PlayerCommandParser extends Parser {
 	public static class BattleCommandContext extends ParserRuleContext {
 		public TerminalNode ATTACK() { return getToken(PlayerCommandParser.ATTACK, 0); }
 		public TerminalNode WIELD() { return getToken(PlayerCommandParser.WIELD, 0); }
+		public TerminalNode FLEE() { return getToken(PlayerCommandParser.FLEE, 0); }
 		public TerminalNode HELP() { return getToken(PlayerCommandParser.HELP, 0); }
 		public BattleCommandContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -324,7 +325,7 @@ public class PlayerCommandParser extends Parser {
 			{
 			setState(28);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3328L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 7424L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -405,19 +406,19 @@ public class PlayerCommandParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u000f$\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0010$\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000\u0003"+
 		"\u0000\u000b\b\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\u001b\b\u0001\u0001"+
 		"\u0002\u0001\u0002\u0001\u0003\u0004\u0003 \b\u0003\u000b\u0003\f\u0003"+
 		"!\u0001\u0003\u0000\u0000\u0004\u0000\u0002\u0004\u0006\u0000\u0001\u0002"+
-		"\u0000\b\b\n\u000b*\u0000\n\u0001\u0000\u0000\u0000\u0002\u001a\u0001"+
-		"\u0000\u0000\u0000\u0004\u001c\u0001\u0000\u0000\u0000\u0006\u001f\u0001"+
-		"\u0000\u0000\u0000\b\u000b\u0003\u0004\u0002\u0000\t\u000b\u0003\u0002"+
-		"\u0001\u0000\n\b\u0001\u0000\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b"+
-		"\u0001\u0001\u0000\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u000e\u0005"+
-		"\u0001\u0000\u0000\u000e\u001b\u0005\r\u0000\u0000\u000f\u0010\u0005\u0002"+
+		"\u0000\b\b\n\f*\u0000\n\u0001\u0000\u0000\u0000\u0002\u001a\u0001\u0000"+
+		"\u0000\u0000\u0004\u001c\u0001\u0000\u0000\u0000\u0006\u001f\u0001\u0000"+
+		"\u0000\u0000\b\u000b\u0003\u0004\u0002\u0000\t\u000b\u0003\u0002\u0001"+
+		"\u0000\n\b\u0001\u0000\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b\u0001"+
+		"\u0001\u0000\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u000e\u0005\u0001"+
+		"\u0000\u0000\u000e\u001b\u0005\u000e\u0000\u0000\u000f\u0010\u0005\u0002"+
 		"\u0000\u0000\u0010\u001b\u0003\u0006\u0003\u0000\u0011\u001b\u0005\u0003"+
 		"\u0000\u0000\u0012\u001b\u0005\u0004\u0000\u0000\u0013\u001b\u0005\u0005"+
 		"\u0000\u0000\u0014\u001b\u0005\u0006\u0000\u0000\u0015\u001b\u0005\u0007"+
@@ -429,7 +430,7 @@ public class PlayerCommandParser extends Parser {
 		"\u0015\u0001\u0000\u0000\u0000\u001a\u0016\u0001\u0000\u0000\u0000\u001a"+
 		"\u0017\u0001\u0000\u0000\u0000\u001a\u0019\u0001\u0000\u0000\u0000\u001b"+
 		"\u0003\u0001\u0000\u0000\u0000\u001c\u001d\u0007\u0000\u0000\u0000\u001d"+
-		"\u0005\u0001\u0000\u0000\u0000\u001e \u0005\f\u0000\u0000\u001f\u001e"+
+		"\u0005\u0001\u0000\u0000\u0000\u001e \u0005\r\u0000\u0000\u001f\u001e"+
 		"\u0001\u0000\u0000\u0000 !\u0001\u0000\u0000\u0000!\u001f\u0001\u0000"+
 		"\u0000\u0000!\"\u0001\u0000\u0000\u0000\"\u0007\u0001\u0000\u0000\u0000"+
 		"\u0003\n\u001a!";

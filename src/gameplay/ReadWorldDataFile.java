@@ -20,10 +20,10 @@ public class ReadWorldDataFile
     {
         GameMapLexer lexer = new GameMapLexer(CharStreams.fromString("MAP [\n" +
                 "    ROOMS [\n" +
-                "        ROOM [ DESC = room1 ]\n" +
+                "        ROOM [ DESC = room1 , ROOM_ITEMS = [ Bread ] ]\n" +
                 "        ROOM [ DESC = room2 , TREASURE_CHEST = [ Jewel ] ]\n" +
                 "        ROOM [ DESC = room3 , WAR_CHEST = [ Sword ] ]\n" +
-                "        ROOM [ DESC = room4]\n" +
+                "        ROOM [ DESC = room4 ]\n" +
                 "        ROOM [ DESC = room5]\n" +
                 "        ROOM [ DESC = room6]\n" +
                 "        ROOM [ DESC = room7]\n" +

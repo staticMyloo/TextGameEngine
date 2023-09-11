@@ -2,6 +2,7 @@ package gameplay;
 
 import gamemap_grammar.GameMapLexer;
 import graph_components.Room;
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
 import playercommand_grammar.PlayerCommandLexer;
@@ -11,6 +12,7 @@ import graph_components.Graph;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class World {
@@ -22,7 +24,8 @@ public class World {
     private Room startRoom;
     private Room currentRoom;
     private Room endRoom;
-    private Scanner scanner;
+    private Room previousRoom;
+    private final Scanner scanner;
 
     public World(Graph graph) {
         this.graph = graph;
@@ -50,8 +53,21 @@ public class World {
 
     //--------------------------------------------------------
     public void onEnterRoom() {
-//        Zombie zombie = new Zombie("Zombie", 10, 5, 40);
-//        if(zombie.appear()) { currentRoom.getMonsters().add(zombie); }
+        
+        if(currentRoom == endRoom) {
+            Dragon dragon = new Dragon("Dragon", 100, 10, 100);
+            currentRoom.getMonsters().add(dragon);
+        } else if(currentRoom != startRoom) {
+            Random rand = new Random();
+            if(rand.nextInt(2) == 0) {
+                Zombie zombie = new Zombie("Zombie", 10, 5, 60);
+                if(zombie.appear()) { currentRoom.getMonsters().add(zombie); }
+
+            } else {
+                Ogre ogre = new Ogre("Ogre", 20, 5, 40);
+                if(ogre.appear()) { currentRoom.getMonsters().add(ogre); }
+            }
+        }
 
         if (!currentRoom.getMonsters().isEmpty()) {
             this.mode = PlayMode.battle;
@@ -63,8 +79,10 @@ public class World {
     //--------------------------------------------------------
     public void play(Player player) {
         this.player = player;
+        System.out.println("==================================================================");
         System.out.println("Welcome player " + player);
         System.out.println("Starting at [" + startRoom + "] End room is [" + endRoom + "]");
+        System.out.println("==================================================================\n\n");
         this.onEnterRoom();
 
         boolean gameInProgress = true;
@@ -74,18 +92,17 @@ public class World {
                     processExploreUserInput();
                 }
                 case battle -> {
+                    System.out.println("Entering battle mode!");
                     processBattleUserInput();
                 }
-
             }
-
         }
-
     }
 
     private void processExploreUserInput() {
-        System.out.println("| You enter Room: " + currentRoom + " |");
+        System.out.println("| You are in : " + currentRoom + " |");
         System.out.println("Choose action: (door n | pickup item | exit | describe | admire valuable | eat food | stats | wield weapon | open chest | help)");
+        describeRoom();
         String input = scanner.nextLine();
         PlayerCommandLexer lexer = new PlayerCommandLexer(CharStreams.fromString(input));
         Token token = lexer.nextToken();
@@ -113,20 +130,20 @@ public class World {
                     token = lexer.nextToken();
                 }
                 case PlayerCommandLexer.ADMIRE -> {
-                    admireValuable();
                     token = lexer.nextToken();
+                    admireValuable(token.getText());
                 }
                 case PlayerCommandLexer.EAT -> {
-                    eatFood("Food");
                     token = lexer.nextToken();
+                    eatFood(token.getText());
                 }
                 case PlayerCommandLexer.STATS -> {
                     displayPlayerStats();
                     token = lexer.nextToken();
                 }
                 case PlayerCommandLexer.WIELD -> {
-                    wieldWeapon();
                     token = lexer.nextToken();
+                    wieldWeapon(token.getText());
                 }
                 case PlayerCommandLexer.OPEN -> {
                     token = lexer.nextToken();
@@ -143,13 +160,111 @@ public class World {
             }
             token = lexer.nextToken();
         }
+    }
 
+    private void processBattleUserInput() {
+            System.out.println("Entering combat!");
+            Monster monster = currentRoom.getMonsters().get(0);
+            while(this.mode == PlayMode.battle) {
+
+
+            System.out.println("Choose action: (attack | stats | flee | wield weapon | help)");
+            String input = scanner.nextLine();
+            PlayerCommandLexer lexer = new PlayerCommandLexer(CharStreams.fromString(input));
+            Token token = lexer.nextToken();
+
+            while(token.getType() != Token.EOF) {
+                switch(token.getType()) {
+                    case PlayerCommandLexer.ATTACK -> {
+                        handleAttackInput(monster);
+                    }
+                    case PlayerCommandLexer.FLEE -> {
+                        tryToFlee();
+                    }
+                    case PlayerCommandLexer.WIELD -> {
+                        token = lexer.nextToken();
+                        wieldWeapon(token.getText());
+                    }
+                    case PlayerCommandLexer.STATS -> {
+                        displayPlayerStats();
+                    }
+                    default -> {
+                        System.out.println("Invalid input. Try again");
+                    }
+                }
+                token = lexer.nextToken();
+            }
+        }
 
     }
+
+    private void tryToFlee() {
+
+        if(currentRoom != endRoom) {
+
+            System.out.println("You try to flee the battle!");
+            Room temp = currentRoom;
+            currentRoom = previousRoom;
+            previousRoom = temp;
+            this.mode = PlayMode.explore;
+
+        } else {
+            System.out.println("Cannot flee! Final boss");
+        }
+
+    }
+    private void handleAttackInput(Monster monster) {
+
+        int damageDealtToMonster = monster.defendAttack(player);
+
+        System.out.println("=================================");
+        System.out.println("| PLAYER:");
+        System.out.println("| \t"+player);
+        System.out.println("|");
+        System.out.println("| \tYou attack the " + monster + "!");
+        System.out.println("| \tDamage dealt: " + damageDealtToMonster);
+        System.out.println("| \tMonster HP: [" + monster.getHp() + "]");
+        System.out.println("=================================");
+
+        if(monster.isDead()) {
+            System.out.println("★ Victory! You defeated the " + monster + "! ★");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            currentRoom.getMonsters().remove(monster);
+            this.mode = PlayMode.explore;
+
+            checkForWinConditions();
+
+            System.out.println("You can now continue your exploration...");
+        } else {
+            int damageDealtToPlayer = player.defendAttack(monster);
+            System.out.println();
+            System.out.println("The " + monster + " counter-attacks!");
+            System.out.println("Damage received: " + damageDealtToPlayer);
+            System.out.println("Your HP: [" + player.getHp() + "]");
+            System.out.println("=================================");
+
+            if(player.getHp() <= 0) {
+                System.out.println("☠ You've been defeated! Game over. ☠");
+                //gameInProgress = false;
+            }
+        }
+        System.out.println();
+    }
+
 
     private void displayCurrentHelpCommands(PlayMode mode) {
 
 
+    }
+
+    private void checkForWinConditions() {
+        if(currentRoom.getMonsters().isEmpty() && currentRoom == endRoom) {
+            System.out.println("★★★ You win! Well done! ★★★");
+        }
     }
 
     private void tryToOpenChest(String chest) {
@@ -172,41 +287,68 @@ public class World {
         } else {
             System.out.println("That item is not in your inventory!");
         }
-
     }
 
-    private void wieldWeapon() {
-        //wield a new weapon from players inventory
+    private void wieldWeapon(String item) {
+        Wieldable pickup = (Wieldable) player.getInventory().select(item);
+        if(pickup == null) {
+            System.out.println("No such item");
+        } else {
+            System.out.println("You are trying to wield "+pickup);
+            player.setCurrentWeapon(pickup);
+        }
     }
 
     private void displayPlayerStats() {
         System.out.println(this.player);
         System.out.println("Inventory: "+Arrays.toString(Arrays.stream(this.player.getInventory().getItems()).toArray()));
+        System.out.println("Current weapon: "+player.getCurrentWeapon());
     }
 
     private void eatFood(String item) {
+        Food pickup = (Food) player.getInventory().select(item);
+
+        if(pickup == null) {
+            System.out.println("No such items");
+        }  else {
+            System.out.println("You eat the "+item);
+            System.out.println("You restore "+pickup.getRestoreHp()+" hp");
+            player.setHp(player.getHp() + pickup.getRestoreHp());
+            player.getInventory().remove(pickup);
+        }
 
     }
 
     private void pickUpItem(String item) {
-        //System.out.println(currentRoom.getRoomItems());
-        for(Pickup pickup : currentRoom.getRoomItems().getItems()) {
-            System.out.println(pickup);
-        }
-        System.out.println(item);
         Pickup pickup = currentRoom.getRoomItems().select(item);
         if (pickup == null) {
             System.out.println("No such items");
         } else {
-            currentRoom.getRoomItems().remove(pickup);
-            player.getInventory().add(pickup);
+              if((pickup instanceof WarChest || pickup instanceof TreasureChest) &&
+                  player.getInventory().containsItemOfType(pickup.getClass())) {
+                  System.out.println("You already have a chest of this type");
+              } else {
+                  currentRoom.getRoomItems().remove(pickup);
+                  player.getInventory().add(pickup);
+              }
         }
     }
 
-    private void admireValuable() {
-        System.out.println("You are admiring a valuable");
-        //iterate inventory
-        //update confidence
+    private void admireValuable(String item) {
+
+        Valuable pickup = (Valuable) player.getInventory().select(item);
+        if(pickup == null) {
+            System.out.println("No such items");
+        } else {
+            System.out.println("You are admiring a valuable");
+            if(!pickup.isHasAdmired()) {
+                System.out.println("Your confidence has increased by "+pickup.getValue());
+                player.setConfidence(player.getConfidence() + pickup.getValue());
+                pickup.setHasAdmired(true);
+            } else {
+                System.out.println("This valuable has been admired before...");
+            }
+        }
     }
 
     private void moveToRoom(int n) {
@@ -218,6 +360,7 @@ public class World {
             }
         }
         if (n >= 0 && n < roomCount) {
+            previousRoom = currentRoom;
             currentRoom = currentConnectingRooms[n];
         }
     }
@@ -230,45 +373,35 @@ public class World {
         }
     }
 
-    private void processBattleUserInput() {
-        System.out.println("A monster appeared! Entering battle mode!");
-    }
 
     private void describeRoom() {
 
+        System.out.println("=================================");
+        System.out.println("| DOORS:");
         int roomCount = 0;
-        for (int i = 0; i < currentRoom.getConnectingRooms().length; i++) {
-            if (currentRoom.getConnectingRooms()[i] != null) {
+        for (Room room : currentRoom.getConnectingRooms()) {
+            if (room != null) {
+                System.out.println("|     Door " + roomCount + " leads to " + room);
                 roomCount++;
             }
         }
-        System.out.println("=================================");
-        System.out.println("| You see " + roomCount + " doors");
-        if (roomCount > 0) {
-            for (int i = 0; i < currentRoom.getConnectingRooms().length; i++) {
-                if (currentRoom.getConnectingRooms()[i] != null) {
-                    System.out.print("Room Number " + i + ": [" + currentRoom.getConnectingRooms()[i] + "]");
-                }
-            }
-            System.out.println();
+        if (roomCount == 0) {
+            System.out.println("|     No doors in this room.");
         }
+        System.out.println("|");
 
-        System.out.println("You look for items in the room...");
+        System.out.println("| ITEMS:");
         if (!currentRoom.getRoomItems().isEmpty()) {
-            System.out.println("You see the following...");
             for (Pickup pickup : currentRoom.getRoomItems().getItems()) {
-                System.out.println(pickup + " ");
+                System.out.println("|     " + pickup);
             }
         } else {
-            System.out.println("You don't see anything...");
+            System.out.println("|     You don't see any items...");
         }
+
         System.out.println("=================================");
     }
 
-
-    //--------------------------------------------------------
-
-    //--------------------------------------------------------
 }
 
 

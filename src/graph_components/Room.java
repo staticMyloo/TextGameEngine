@@ -24,7 +24,7 @@ public class Room extends Entity {
         this.roomName = roomName;
         this.roomItems = roomItems;
         this.connectingRooms = connectingRooms;
-        this.monsters = new ArrayList<>();
+        this.monsters = new ArrayList<>(1);
     }
 
     public boolean isEndRoom() {
@@ -59,6 +59,9 @@ public class Room extends Entity {
     }
 
 
+    public void addItemInRoom(Pickup pickup) {
+        this.roomItems.add(pickup);
+    }
 
     public Room[] getConnectingRooms() {
         return connectingRooms;
@@ -80,7 +83,8 @@ public class Room extends Entity {
 
     @Override
     public String toString() {
-        return getRoomName().substring(4);
+        //return getRoomName().substring(4);
+        return roomName;
     }
 
 

@@ -36,11 +36,13 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
 
     @Override
     public Room visitRoom(GameMapParser.RoomContext ctx) {
+
         String desc = ctx.roomName().getText();
         Room room = new Room(desc, new Inventory(), new Room[4]);
         if(ctx.END_ROOM() != null) {
             room.setEndRoom();
         }
+
         GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
         if(treasureItemContext != null) {
             List<GameMapParser.PickupContext> pickups = treasureItemContext.pickup();
@@ -51,6 +53,7 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
             }
             room.spawnTreasureChest(new TreasureChest("TreasureChest", pickupArray));
         }
+
         GameMapParser.WieldableContext wieldableContext = ctx.wieldable();
         if(wieldableContext != null) {
             List<GameMapParser.PickupContext> pickups = wieldableContext.pickup();
@@ -60,6 +63,14 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
                 pickupArray[i] = (Pickup) createNewItem(itemType);
             }
             room.spawnWarChest(new WarChest("WarChest", pickupArray));
+        }
+
+        GameMapParser.PickupContext pickupContext = ctx.pickup();
+        if(pickupContext != null) {
+            String itemType = pickupContext.getText();
+            System.out.println(itemType);
+            Pickup pickup = createNewItem(itemType);
+            room.addItemInRoom(pickup);
         }
 
         graph.addRoom(room);
@@ -89,27 +100,22 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
     }
 
     private Pickup createNewItem(String item) {
-        switch (item) {
+        return switch (item) {
+            //Food Pickups
+            case "Bread" -> new Bread(item, 10);
+            case "Mead" -> new Mead(item, 15);
+            case "RoastBoar" -> new RoastBoar(item, 20);
             //Valuable Pickups
-            case "Chalice":
-                return new Chalice(item, 20);
-            case "Coin":
-                return new Coin(item, 2);
-            case "Gold bars":
-                return new Goldbars(item, 7);
-            case "Jewel":
-                return new Jewel(item, 10);
-            case "Money Bag":
-                return new MoneyBag(item, 10);
-            case "Ring":
-                return new Ring(item, 5);
+            case "Chalice" -> new Chalice(item, 20);
+            case "Coin" -> new Coin(item, 2);
+            case "Gold bars" -> new Goldbars(item, 7);
+            case "Jewel" -> new Jewel(item, 10);
+            case "Money Bag" -> new MoneyBag(item, 10);
+            case "Ring" -> new Ring(item, 5);
             //Weapon pickups
-            case "Sword":
-                return new Sword(item, 5, 10);
-            case "Axe":
-                return new Axe(item, 7, 12);
-            default:
-                return null;
-        }
+            case "Sword" -> new Sword(item, 5, 10);
+            case "Axe" -> new Axe(item, 7, 12);
+            default -> null;
+        };
     }
 }

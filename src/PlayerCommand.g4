@@ -21,6 +21,7 @@ exploreCommand
 battleCommand
     : ATTACK
     | WIELD
+    | FLEE
     | HELP;
 
 item : STRING+;
@@ -35,6 +36,7 @@ STATS : 'stats';
 WIELD : 'wield';
 OPEN : 'open';
 HELP : 'help';
+FLEE : 'flee';
 
 //Battle commands
 ATTACK : 'attack';

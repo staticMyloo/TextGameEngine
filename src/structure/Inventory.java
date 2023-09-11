@@ -41,12 +41,21 @@ public class Inventory
 
 		return p;
 	}
+
+	public boolean containsItemOfType(Class<?> type) {
+		for (Pickup item : items) {
+			if (type.isInstance(item)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	//------------------------------------
 	public Pickup select(String id)
 	{
 		for(Pickup p : this.items)
 		{
-			System.out.println("Item's ID: " + p.getId() + ", Given ID: " + id);
 			if (p!=null && p.compareID(id))
 			{
 				return p;

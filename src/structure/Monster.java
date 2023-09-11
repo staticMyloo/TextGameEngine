@@ -20,6 +20,11 @@ public abstract class Monster extends Character {
         int spawnThreshold = new Random().nextInt(1,100);
         return spawnChance > spawnThreshold;
     }
+
+    public boolean isDead() {
+        return (this.getHp() <= 0);
+    }
+
     @Override
     public int dealAttackDamage() {
         return ap + randomBehaviour(1,10);

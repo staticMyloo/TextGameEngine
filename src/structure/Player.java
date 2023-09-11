@@ -16,6 +16,9 @@ public class Player extends Character
         this.name = name;
         this.setConfidence(confidence);
         this.inventory = new Inventory();
+        FistsOfFury fists = new FistsOfFury("FistsOfFury", 5, 10);
+        inventory.add(fists);
+        currentWeapon = fists;
     }
 
     @Override
@@ -27,11 +30,14 @@ public class Player extends Character
     @Override
     public int defendAttack(Character enemy) {
         int damageInstance = enemy.dealAttackDamage();
-        setHp(damageInstance - getHp());
+        setHp(getHp() - damageInstance);
         setConfidence(damageInstance/2);
         return damageInstance;
     }
 
+    public Wieldable getCurrentWeapon() {
+        return currentWeapon;
+    }
     public int getConfidence() {
         return confidence;
     }
@@ -46,6 +52,10 @@ public class Player extends Character
 
     public String getName() {
         return name;
+    }
+
+    public void setCurrentWeapon(Wieldable weapon) {
+        this.currentWeapon = weapon;
     }
 
     @Override
