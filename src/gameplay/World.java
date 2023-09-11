@@ -53,7 +53,7 @@ public class World {
 
     //--------------------------------------------------------
     public void onEnterRoom() {
-        
+
         if(currentRoom == endRoom) {
             Dragon dragon = new Dragon("Dragon", 100, 10, 100);
             currentRoom.getMonsters().add(dragon);
@@ -168,7 +168,7 @@ public class World {
             while(this.mode == PlayMode.battle) {
 
 
-            System.out.println("Choose action: (attack | stats | flee | wield weapon | help)");
+            System.out.println("Choose action: (attack | stats | eat | flee | wield weapon | help)");
             String input = scanner.nextLine();
             PlayerCommandLexer lexer = new PlayerCommandLexer(CharStreams.fromString(input));
             Token token = lexer.nextToken();
@@ -187,6 +187,13 @@ public class World {
                     }
                     case PlayerCommandLexer.STATS -> {
                         displayPlayerStats();
+                    }
+                    case PlayerCommandLexer.EAT -> {
+                        token = lexer.nextToken();
+                        eatFood(token.getText());
+                    }
+                    case PlayerCommandLexer.HELP -> {
+                        displayCurrentHelpCommands(this.mode);
                     }
                     default -> {
                         System.out.println("Invalid input. Try again");
@@ -257,9 +264,33 @@ public class World {
 
 
     private void displayCurrentHelpCommands(PlayMode mode) {
-
-
+        System.out.println("\n=================================");
+        System.out.println("| COMMANDS:");
+        switch (mode) {
+            case explore -> {
+                System.out.println("|     door [n] - Go through door number [n]");
+                System.out.println("|     pickup [item] - Pickup specified item");
+                System.out.println("|     exit - Try to exit the current room");
+                System.out.println("|     describe - Describe the current room");
+                System.out.println("|     admire [valuable] - Admire a valuable from your inventory");
+                System.out.println("|     eat [food] - Eat specified food from your inventory");
+                System.out.println("|     stats - Display player's current stats and inventory");
+                System.out.println("|     wield [weapon] - Wield a weapon from your inventory");
+                System.out.println("|     open [chest] - Attempt to open a specified chest");
+                System.out.println("|     help - Display this help menu");
+            }
+            case battle -> {
+                System.out.println("|     attack - Attack the monster");
+                System.out.println("|     stats - Display player's current stats and inventory");
+                System.out.println("|     eat [food] - Eat specified food from your inventory to recover HP");
+                System.out.println("|     flee - Try to escape from the battle");
+                System.out.println("|     wield [weapon] - Wield a weapon from your inventory");
+                System.out.println("|     help - Display this help menu");
+            }
+        }
+        System.out.println("=================================\n");
     }
+
 
     private void checkForWinConditions() {
         if(currentRoom.getMonsters().isEmpty() && currentRoom == endRoom) {
@@ -279,6 +310,7 @@ public class World {
             } else {
                 System.out.println("Chest contains :"+foundChest.getChestItems());
                 for(Pickup pickup : foundChest.getChestItems()) {
+                    System.out.println("You put the "+pickup+" in your inventory.");
                     player.getInventory().add(pickup);
                 }
                 player.getInventory().remove(getChest);
