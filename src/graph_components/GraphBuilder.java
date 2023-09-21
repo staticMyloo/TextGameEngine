@@ -37,11 +37,15 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
     @Override
     public Room visitRoom(GameMapParser.RoomContext ctx) {
 
-        String desc = ctx.roomName().getText();
+        String desc = ctx.description().getText();
         Room room = new Room(desc, new Inventory(), new Room[4]);
         if(ctx.END_ROOM() != null) {
             room.setEndRoom();
         }
+
+        String roomId = ctx.roomName().getText();
+        room.setId(roomId);
+
 
         GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
         if(treasureItemContext != null) {

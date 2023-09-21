@@ -1,4 +1,4 @@
-// Generated from C:/Users/myles/Desktop/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/GitHub/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
 package gamemap_grammar;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -61,6 +61,13 @@ public class GameMapBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitTreasureItem(GameMapParser.TreasureItemContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDescription(GameMapParser.DescriptionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

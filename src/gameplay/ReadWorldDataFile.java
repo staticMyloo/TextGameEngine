@@ -20,17 +20,17 @@ public class ReadWorldDataFile
     {
         GameMapLexer lexer = new GameMapLexer(CharStreams.fromString("MAP [\n" +
                 "    ROOMS [\n" +
-                "        ROOM [ DESC = room1 , ROOM_ITEMS = [ Bread ] ]\n" +
-                "        ROOM [ DESC = room2 , TREASURE_CHEST = [ Jewel ] ]\n" +
-                "        ROOM [ DESC = room3 , WAR_CHEST = [ Sword ] ]\n" +
-                "        ROOM [ DESC = room4 ]\n" +
-                "        ROOM [ DESC = room5]\n" +
-                "        ROOM [ DESC = room6]\n" +
-                "        ROOM [ DESC = room7]\n" +
-                "        ROOM [ DESC = room8]\n" +
-                "        ROOM [ DESC = room9]\n" +
-                "        ROOM [ DESC = room10]\n" +
-                "        ROOM [ DESC = room11 , END_ROOM = true ]\n" +
+                "        ROOM [ ID = room1 , DESC = \"Start Room\" , ROOM_ITEMS = [ Bread ] ]\n" +
+                "        ROOM [ ID = room2 , DESC = \"Room two\" , TREASURE_CHEST = [ Jewel ] ]\n" +
+                "        ROOM [ ID = room3 , DESC = \"Room three\" , WAR_CHEST = [ Sword ] ]\n" +
+                "        ROOM [ ID = room4 , DESC = \"Room four\" ]\n" +
+                "        ROOM [ ID = room5 , DESC = \"Room five\" ]\n" +
+                "        ROOM [ ID = room6 , DESC = \"Room six\" ]\n" +
+                "        ROOM [ ID = room7 , DESC = \"Room seven\" ]\n" +
+                "        ROOM [ ID = room8 , DESC = \"Room eight\" ]\n" +
+                "        ROOM [ ID = room9 , DESC = \"Room nine\" ]\n" +
+                "        ROOM [ ID = room10, DESC = \"Room ten\" ]\n" +
+                "        ROOM [ ID = room11 , DESC = \"Boss Room\" , END_ROOM = true ]\n" +
                 "    ]\n" +
                 "    EDGES [\n" +
                 "        EDGE [ ID = edge1 , START = room1, END = room3 ]\n" +

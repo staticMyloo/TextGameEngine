@@ -8,7 +8,8 @@ roomList : 'ROOMS' '[' room+ ']' ;
 edgeList : 'EDGES' '[' edge+ ']' ;
 
 room : 'ROOM' '['
-                    'DESC' '=' roomName
+                    'ID' '=' roomName ','
+                    'DESC' '=' description
                     (',' 'ROOM_ITEMS' '=' '[' pickup ']')?
                     (',' 'TREASURE_CHEST' '=' '[' treasureItem ']' )?
                     (',' 'WAR_CHEST' '=' '[' wieldable ']' )?
@@ -19,6 +20,7 @@ edge : 'EDGE' '[' 'ID' '=' ID ',' 'START' '=' ID ',' 'END' '=' ID ']' ;
 
 wieldable : pickup*;
 treasureItem : pickup*;
+description: STRING;
 roomName: ID;
 pickup: TREASURE_ITEM | WAR_ITEM | CHEST | FOOD;
 

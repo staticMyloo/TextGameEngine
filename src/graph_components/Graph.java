@@ -13,7 +13,7 @@ public class Graph {
     }
 
     public void addRoom(Room room) {
-        roomMap.put(room.getRoomName(), room);
+        roomMap.put(room.getId(), room);
     }
 
     public void addAdjacentRooms() {

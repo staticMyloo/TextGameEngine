@@ -20,7 +20,7 @@ public class Room extends Entity {
     }
 
     public Room(String roomName, Inventory roomItems, Room[] connectingRooms) {
-        super(roomName);
+        super(null);
         this.roomName = roomName;
         this.roomItems = roomItems;
         this.connectingRooms = connectingRooms;

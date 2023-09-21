@@ -1,4 +1,4 @@
-// Generated from C:/Users/myles/Desktop/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/GitHub/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
 package gamemap_grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -52,6 +52,12 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTreasureItem(GameMapParser.TreasureItemContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GameMapParser#description}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDescription(GameMapParser.DescriptionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GameMapParser#roomName}.
 	 * @param ctx the parse tree

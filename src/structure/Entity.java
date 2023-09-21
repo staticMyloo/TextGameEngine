@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class Entity {
 
-    private final String id;
+    private String id;
     private String description;
 
     public Entity(String description) {
@@ -28,6 +28,10 @@ public abstract class Entity {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setId(String s) {
+        this.id = s;
     }
 
     public String getDescription() {
