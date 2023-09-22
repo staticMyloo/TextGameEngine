@@ -19,8 +19,8 @@ public class Room extends Entity {
         this.adjacentEdges = new ArrayList<>();
     }
 
-    public Room(String roomName, Inventory roomItems, Room[] connectingRooms) {
-        super(null);
+    public Room(String description, String roomName, Inventory roomItems, Room[] connectingRooms) {
+        super(description);
         this.roomName = roomName;
         this.roomItems = roomItems;
         this.connectingRooms = connectingRooms;

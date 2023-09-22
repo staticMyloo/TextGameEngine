@@ -1,4 +1,4 @@
-// Generated from C:/Users/myles/GitHub/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
+// Generated from C:/Users/myles/Desktop/TextGameEngine/src\GameMap.g4 by ANTLR 4.12.0
 package gamemap_grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -97,6 +97,16 @@ public interface GameMapListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRoomName(GameMapParser.RoomNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GameMapParser#roomID}.
+	 * @param ctx the parse tree
+	 */
+	void enterRoomID(GameMapParser.RoomIDContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GameMapParser#roomID}.
+	 * @param ctx the parse tree
+	 */
+	void exitRoomID(GameMapParser.RoomIDContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GameMapParser#roomItems}.
 	 * @param ctx the parse tree

@@ -26,6 +26,7 @@ public class World {
     private Room endRoom;
     private Room previousRoom;
     private final Scanner scanner;
+    boolean gameInProgress = true;
 
     public World(Graph graph) {
         this.graph = graph;
@@ -85,7 +86,6 @@ public class World {
         System.out.println("==================================================================\n\n");
         this.onEnterRoom();
 
-        boolean gameInProgress = true;
         while (gameInProgress) {
             switch (this.mode) {
                 case explore -> {
@@ -99,7 +99,7 @@ public class World {
     }
 
     private void processExploreUserInput() {
-        System.out.println("| You are in : " + currentRoom + " |");
+        System.out.println("| " + currentRoom + " |");
         System.out.println("Choose action: (door n | pickup item | exit | describe | admire valuable | eat food | stats | wield weapon | open chest | help)");
         describeRoom();
         String input = scanner.nextLine();
@@ -153,8 +153,7 @@ public class World {
                     token = lexer.nextToken();
                 }
                 default -> {
-                    input = scanner.nextLine();
-                    break;
+                    System.out.println("!< Invalid input. Try again >!");
                 }
             }
             token = lexer.nextToken();
@@ -167,11 +166,11 @@ public class World {
             System.out.println(monster);
             while(this.mode == PlayMode.battle) {
 
-
             System.out.println("Choose action: (attack | stats | eat | flee | wield weapon | help)");
             String input = scanner.nextLine();
             PlayerCommandLexer lexer = new PlayerCommandLexer(CharStreams.fromString(input));
             Token token = lexer.nextToken();
+            boolean validToken = true;
 
             while(token.getType() != Token.EOF) {
                 switch(token.getType()) {
@@ -196,13 +195,12 @@ public class World {
                         displayCurrentHelpCommands(this.mode);
                     }
                     default -> {
-                        System.out.println("Invalid input. Try again");
+                        System.out.println("!< Invalid input. Try again >!");
                     }
                 }
                 token = lexer.nextToken();
             }
         }
-
     }
 
     private void tryToFlee() {
@@ -244,7 +242,6 @@ public class World {
             this.mode = PlayMode.explore;
 
             checkForWinConditions();
-
             System.out.println("You can now continue your exploration...");
         } else {
             int damageDealtToPlayer = player.defendAttack(monster);
@@ -256,7 +253,7 @@ public class World {
 
             if(player.getHp() <= 0) {
                 System.out.println("☠ You've been defeated! Game over. ☠");
-                //gameInProgress = false;
+                gameInProgress = false;
             }
         }
         System.out.println();
@@ -295,6 +292,7 @@ public class World {
     private void checkForWinConditions() {
         if(currentRoom.getMonsters().isEmpty() && currentRoom == endRoom) {
             System.out.println("★★★ You win! Well done! ★★★");
+            gameInProgress = false;
         }
     }
 
@@ -425,13 +423,13 @@ public class World {
 
 
     private void describeRoom() {
-
+        System.out.println(currentRoom.getDescription());
         System.out.println("=================================");
         System.out.println("| DOORS:");
         int roomCount = 0;
         for (Room room : currentRoom.getConnectingRooms()) {
             if (room != null) {
-                System.out.println("|     Door " + roomCount + " leads to " + room);
+                System.out.println("|     Door " + roomCount + " leads to the " + room.getRoomName());
                 roomCount++;
             }
         }

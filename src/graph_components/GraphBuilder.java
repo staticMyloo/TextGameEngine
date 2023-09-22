@@ -4,9 +4,7 @@ import gamemap_grammar.GameMapParser;
 import structure.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
 
 public class GraphBuilder extends GameMapBaseVisitor<Room> {
 
@@ -39,14 +37,14 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
     public Room visitRoom(GameMapParser.RoomContext ctx) {
 
         String desc = ctx.description().getText();
-        Room room = new Room(desc, new Inventory(), new Room[4]);
+        String roomName = ctx.roomName().getText();
+        Room room = new Room(desc, roomName, new Inventory(), new Room[4]);
         if(ctx.END_ROOM() != null) {
             room.setEndRoom();
         }
 
-        String roomId = ctx.roomName().getText();
+        String roomId = ctx.roomID().getText();
         room.setId(roomId);
-
 
         GameMapParser.TreasureItemContext treasureItemContext = ctx.treasureItem();
         if(treasureItemContext != null) {

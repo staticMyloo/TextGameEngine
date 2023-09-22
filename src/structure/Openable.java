@@ -47,6 +47,6 @@ public class Openable extends Pickup {
 
     @Override
     public String toString() {
-        return this.getId()+"["+getIsLocked()+"]";
+        return this.getId() ;
     }
 }

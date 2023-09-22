@@ -13,9 +13,7 @@ public class GameEngine
 {
     public static void main(String[] args)
     {
-        //read the World object instance from a text file or literal
         World world = ReadWorldDataFile.basicWorld();
-        System.out.println(world.getGraph());
         Player playerOne = new Player("Sir Kendric",1000,50);
         world.play(playerOne);
     }
