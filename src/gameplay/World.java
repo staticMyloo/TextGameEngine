@@ -92,7 +92,6 @@ public class World {
                     processExploreUserInput();
                 }
                 case battle -> {
-                    System.out.println("Entering battle mode!");
                     processBattleUserInput();
                 }
             }
@@ -163,8 +162,9 @@ public class World {
     }
 
     private void processBattleUserInput() {
-            System.out.println("Entering combat!");
             Monster monster = currentRoom.getMonsters().get(0);
+            System.out.println("A "+monster.getDescription()+" appeared!");
+            System.out.println(monster);
             while(this.mode == PlayMode.battle) {
 
 
@@ -307,18 +307,35 @@ public class World {
             Openable foundChest = (Openable) player.getInventory().select(chest);
             if(foundChest.getIsLocked()) {
                 System.out.println("Chest is locked!");
-            } else {
-                System.out.println("Chest contains :"+foundChest.getChestItems());
-                for(Pickup pickup : foundChest.getChestItems()) {
-                    System.out.println("You put the "+pickup+" in your inventory.");
-                    player.getInventory().add(pickup);
+                System.out.println("Checking for keys or lockpicks...");
+                if(player.getInventory().containsItemOfType(Key.class) || player.getInventory().containsItemOfType(LockPick.class)) {
+                    if(player.getInventory().containsItemOfType(Key.class)) {
+                        player.getInventory().removeFirstItemOfType(Key.class);
+                        System.out.println("You've used a key to open the chest and it's now gone.");
+                        lootChest(foundChest, getChest);
+                    } else if(player.getInventory().containsItemOfType(LockPick.class)) {
+                        player.getInventory().removeFirstItemOfType(LockPick.class);
+                        System.out.println("You've used a lockpick to open the chest and it's now gone.");
+                        lootChest(foundChest, getChest);
+                    }
+                } else {
+                    System.out.println("You can't open this chest...");
                 }
-                player.getInventory().remove(getChest);
+            } else {
+                lootChest(foundChest, getChest);
             }
-
         } else {
             System.out.println("That item is not in your inventory!");
         }
+    }
+
+    private void lootChest(Openable foundChest, Pickup getChest) {
+        System.out.println("Chest contains :"+ foundChest.getChestItems());
+        for(Pickup pickup : foundChest.getChestItems()) {
+            System.out.println("You put the "+pickup+" in your inventory.");
+            player.getInventory().add(pickup);
+        }
+        player.getInventory().remove(getChest);
     }
 
     private void wieldWeapon(String item) {
@@ -362,6 +379,7 @@ public class World {
               } else {
                   currentRoom.getRoomItems().remove(pickup);
                   player.getInventory().add(pickup);
+                  System.out.println("| You add the "+pickup+" to your inventory |");
               }
         }
     }

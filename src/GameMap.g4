@@ -8,9 +8,14 @@ roomList : 'ROOMS' '[' room+ ']' ;
 edgeList : 'EDGES' '[' edge+ ']' ;
 
 room : 'ROOM' '['
+<<<<<<< Updated upstream
                     'ID' '=' roomName ','
                     'DESC' '=' description
                     (',' 'ROOM_ITEMS' '=' '[' pickup ']')?
+=======
+                    'DESC' '=' roomName
+                    (',' 'ROOM_ITEMS' '=' '[' roomItems ']')?
+>>>>>>> Stashed changes
                     (',' 'TREASURE_CHEST' '=' '[' treasureItem ']' )?
                     (',' 'WAR_CHEST' '=' '[' wieldable ']' )?
                     (',' 'END_ROOM' '=' END_ROOM)?
@@ -22,12 +27,14 @@ wieldable : pickup*;
 treasureItem : pickup*;
 description: STRING;
 roomName: ID;
-pickup: TREASURE_ITEM | WAR_ITEM | CHEST | FOOD;
+roomItems : pickup (',' pickup)*;
+pickup: TREASURE_ITEM | WAR_ITEM | CHEST | FOOD | KEY;
 
 CHEST : 'WarChest' | 'TreasureChest';
 FOOD : 'Mead' | 'RoastBoar' | 'Bread';
 WAR_ITEM : 'Axe' | 'Sword' | 'FistsOfFury' ;
 TREASURE_ITEM : 'Ring' | 'Jewel' | 'Goldbars' | 'Chalice' | 'Coin' | 'MoneyBag';
+KEY : 'LockPick' | 'Key';
 STRING : '"' ( ~["\n\r] )* '"' ;
 END_ROOM : 'true' | 'false' ;
 ID : [a-zA-Z][a-zA-Z0-9]* ;

@@ -51,6 +51,14 @@ public class Inventory
 		return false;
 	}
 
+	public void removeFirstItemOfType(Class<?> type) {
+		for(Pickup pickup : items) {
+			if(type.isInstance(pickup)) {
+				items.remove(pickup);
+				break;
+			}
+		}
+	}
 	//------------------------------------
 	public Pickup select(String id)
 	{

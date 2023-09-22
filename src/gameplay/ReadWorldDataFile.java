@@ -20,6 +20,7 @@ public class ReadWorldDataFile
     {
         GameMapLexer lexer = new GameMapLexer(CharStreams.fromString("MAP [\n" +
                 "    ROOMS [\n" +
+<<<<<<< Updated upstream
                 "        ROOM [ ID = room1 , DESC = \"Start Room\" , ROOM_ITEMS = [ Bread ] ]\n" +
                 "        ROOM [ ID = room2 , DESC = \"Room two\" , TREASURE_CHEST = [ Jewel ] ]\n" +
                 "        ROOM [ ID = room3 , DESC = \"Room three\" , WAR_CHEST = [ Sword ] ]\n" +
@@ -31,6 +32,19 @@ public class ReadWorldDataFile
                 "        ROOM [ ID = room9 , DESC = \"Room nine\" ]\n" +
                 "        ROOM [ ID = room10, DESC = \"Room ten\" ]\n" +
                 "        ROOM [ ID = room11 , DESC = \"Boss Room\" , END_ROOM = true ]\n" +
+=======
+                "        ROOM [ DESC = room1 , ROOM_ITEMS = [ Bread , LockPick ] ]\n" +
+                "        ROOM [ DESC = room2 , TREASURE_CHEST = [ Jewel ] ]\n" +
+                "        ROOM [ DESC = room3 , WAR_CHEST = [ Sword ] ]\n" +
+                "        ROOM [ DESC = room4 ]\n" +
+                "        ROOM [ DESC = room5 , ROOM_ITEMS = [ Goldbars ] ]\n" +
+                "        ROOM [ DESC = room6 , WAR_CHEST = [ Axe ] ]\n" +
+                "        ROOM [ DESC = room7, ROOM_ITEMS = [ Chalice , RoastBoar ] ]\n" +
+                "        ROOM [ DESC = room8, ROOM_ITEMS = [ RoastBoar ] ]\n" +
+                "        ROOM [ DESC = room9]\n" +
+                "        ROOM [ DESC = room10]\n" +
+                "        ROOM [ DESC = room11 , END_ROOM = true ]\n" +
+>>>>>>> Stashed changes
                 "    ]\n" +
                 "    EDGES [\n" +
                 "        EDGE [ ID = edge1 , START = room1, END = room3 ]\n" +

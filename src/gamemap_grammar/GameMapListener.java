@@ -98,6 +98,16 @@ public interface GameMapListener extends ParseTreeListener {
 	 */
 	void exitRoomName(GameMapParser.RoomNameContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GameMapParser#roomItems}.
+	 * @param ctx the parse tree
+	 */
+	void enterRoomItems(GameMapParser.RoomItemsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GameMapParser#roomItems}.
+	 * @param ctx the parse tree
+	 */
+	void exitRoomItems(GameMapParser.RoomItemsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GameMapParser#pickup}.
 	 * @param ctx the parse tree
 	 */

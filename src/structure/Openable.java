@@ -4,6 +4,7 @@ import structure.Pickup;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Openable extends Pickup {
 
@@ -31,7 +32,8 @@ public class Openable extends Pickup {
         return this.chestItems;
     }
     private boolean determineLock() {
-        int chance = randomBehaviour(0,1);
+        Random random = new Random();
+        int chance = random.nextInt(2);
         return chance != 0;
     }
 
@@ -39,5 +41,12 @@ public class Openable extends Pickup {
         return this.isLocked;
     }
 
+    public void setLocked(boolean lock) {
+        this.isLocked = lock;
+    }
 
+    @Override
+    public String toString() {
+        return this.getId()+"["+getIsLocked()+"]";
+    }
 }

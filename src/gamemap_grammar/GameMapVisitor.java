@@ -65,6 +65,12 @@ public interface GameMapVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRoomName(GameMapParser.RoomNameContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GameMapParser#roomItems}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRoomItems(GameMapParser.RoomItemsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GameMapParser#pickup}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

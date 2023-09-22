@@ -125,6 +125,18 @@ public class GameMapBaseListener implements GameMapListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRoomItems(GameMapParser.RoomItemsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRoomItems(GameMapParser.RoomItemsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPickup(GameMapParser.PickupContext ctx) { }
 	/**
 	 * {@inheritDoc}

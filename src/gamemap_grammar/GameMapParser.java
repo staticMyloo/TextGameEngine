@@ -23,12 +23,21 @@ public class GameMapParser extends Parser {
 		ID=24, WS=25, NEWLINE=26;
 	public static final int
 		RULE_gamemap = 0, RULE_roomList = 1, RULE_edgeList = 2, RULE_room = 3, 
+<<<<<<< Updated upstream
 		RULE_edge = 4, RULE_wieldable = 5, RULE_treasureItem = 6, RULE_description = 7, 
 		RULE_roomName = 8, RULE_pickup = 9;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"gamemap", "roomList", "edgeList", "room", "edge", "wieldable", "treasureItem", 
 			"description", "roomName", "pickup"
+=======
+		RULE_edge = 4, RULE_wieldable = 5, RULE_treasureItem = 6, RULE_roomName = 7, 
+		RULE_roomItems = 8, RULE_pickup = 9;
+	private static String[] makeRuleNames() {
+		return new String[] {
+			"gamemap", "roomList", "edgeList", "room", "edge", "wieldable", "treasureItem", 
+			"roomName", "roomItems", "pickup"
+>>>>>>> Stashed changes
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -273,7 +282,11 @@ public class GameMapParser extends Parser {
 				setState(40); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
+<<<<<<< Updated upstream
 			} while ( _la==T__14 );
+=======
+			} while ( _la==T__13 );
+>>>>>>> Stashed changes
 			setState(42);
 			match(T__2);
 			}
@@ -294,11 +307,16 @@ public class GameMapParser extends Parser {
 		public RoomNameContext roomName() {
 			return getRuleContext(RoomNameContext.class,0);
 		}
+<<<<<<< Updated upstream
 		public DescriptionContext description() {
 			return getRuleContext(DescriptionContext.class,0);
 		}
 		public PickupContext pickup() {
 			return getRuleContext(PickupContext.class,0);
+=======
+		public RoomItemsContext roomItems() {
+			return getRuleContext(RoomItemsContext.class,0);
+>>>>>>> Stashed changes
 		}
 		public TreasureItemContext treasureItem() {
 			return getRuleContext(TreasureItemContext.class,0);
@@ -343,6 +361,7 @@ public class GameMapParser extends Parser {
 			match(T__7);
 			setState(48);
 			roomName();
+<<<<<<< Updated upstream
 			setState(49);
 			match(T__8);
 			setState(50);
@@ -352,10 +371,14 @@ public class GameMapParser extends Parser {
 			setState(52);
 			description();
 			setState(60);
+=======
+			setState(56);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
+<<<<<<< Updated upstream
 				setState(53);
 				match(T__8);
 				setState(54);
@@ -367,15 +390,33 @@ public class GameMapParser extends Parser {
 				setState(57);
 				pickup();
 				setState(58);
+=======
+				setState(49);
+				match(T__8);
+				setState(50);
+				match(T__9);
+				setState(51);
+				match(T__7);
+				setState(52);
+				match(T__1);
+				setState(53);
+				roomItems();
+				setState(54);
+>>>>>>> Stashed changes
 				match(T__2);
 				}
 				break;
 			}
+<<<<<<< Updated upstream
 			setState(69);
+=======
+			setState(65);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				{
+<<<<<<< Updated upstream
 				setState(62);
 				match(T__8);
 				setState(63);
@@ -387,11 +428,44 @@ public class GameMapParser extends Parser {
 				setState(66);
 				treasureItem();
 				setState(67);
+=======
+				setState(58);
+				match(T__8);
+				setState(59);
+				match(T__10);
+				setState(60);
+				match(T__7);
+				setState(61);
+				match(T__1);
+				setState(62);
+				treasureItem();
+				setState(63);
 				match(T__2);
 				}
 				break;
 			}
-			setState(78);
+			setState(74);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			case 1:
+				{
+				setState(67);
+				match(T__8);
+				setState(68);
+				match(T__11);
+				setState(69);
+				match(T__7);
+				setState(70);
+				match(T__1);
+				setState(71);
+				wieldable();
+				setState(72);
+>>>>>>> Stashed changes
+				match(T__2);
+				}
+				break;
+			}
+			setState(80);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
@@ -416,6 +490,7 @@ public class GameMapParser extends Parser {
 			_la = _input.LA(1);
 			if (_la==T__8) {
 				{
+<<<<<<< Updated upstream
 				setState(80);
 				match(T__8);
 				setState(81);
@@ -423,11 +498,24 @@ public class GameMapParser extends Parser {
 				setState(82);
 				match(T__7);
 				setState(83);
+=======
+				setState(76);
+				match(T__8);
+				setState(77);
+				match(T__12);
+				setState(78);
+				match(T__7);
+				setState(79);
+>>>>>>> Stashed changes
 				match(END_ROOM);
 				}
 			}
 
+<<<<<<< Updated upstream
 			setState(86);
+=======
+			setState(82);
+>>>>>>> Stashed changes
 			match(T__2);
 			}
 		}
@@ -473,12 +561,29 @@ public class GameMapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(88);
 			match(T__14);
 			setState(89);
 			match(T__1);
 			setState(90);
 			match(T__6);
+=======
+			setState(84);
+			match(T__13);
+			setState(85);
+			match(T__1);
+			setState(86);
+			match(T__14);
+			setState(87);
+			match(T__7);
+			setState(88);
+			match(ID);
+			setState(89);
+			match(T__8);
+			setState(90);
+			match(T__15);
+>>>>>>> Stashed changes
 			setState(91);
 			match(T__7);
 			setState(92);
@@ -486,12 +591,17 @@ public class GameMapParser extends Parser {
 			setState(93);
 			match(T__8);
 			setState(94);
+<<<<<<< Updated upstream
 			match(T__15);
+=======
+			match(T__16);
+>>>>>>> Stashed changes
 			setState(95);
 			match(T__7);
 			setState(96);
 			match(ID);
 			setState(97);
+<<<<<<< Updated upstream
 			match(T__8);
 			setState(98);
 			match(T__16);
@@ -500,6 +610,8 @@ public class GameMapParser extends Parser {
 			setState(100);
 			match(ID);
 			setState(101);
+=======
+>>>>>>> Stashed changes
 			match(T__2);
 			}
 		}
@@ -548,17 +660,29 @@ public class GameMapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(106);
+=======
+			setState(102);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 3932160L) != 0)) {
 				{
 				{
+<<<<<<< Updated upstream
 				setState(103);
 				pickup();
 				}
 				}
 				setState(108);
+=======
+				setState(99);
+				pickup();
+				}
+				}
+				setState(104);
+>>>>>>> Stashed changes
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -609,17 +733,29 @@ public class GameMapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(112);
+=======
+			setState(108);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 3932160L) != 0)) {
 				{
 				{
+<<<<<<< Updated upstream
 				setState(109);
 				pickup();
 				}
 				}
 				setState(114);
+=======
+				setState(105);
+				pickup();
+				}
+				}
+				setState(110);
+>>>>>>> Stashed changes
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -707,8 +843,77 @@ public class GameMapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(117);
+=======
+			setState(111);
+>>>>>>> Stashed changes
 			match(ID);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class RoomItemsContext extends ParserRuleContext {
+		public List<PickupContext> pickup() {
+			return getRuleContexts(PickupContext.class);
+		}
+		public PickupContext pickup(int i) {
+			return getRuleContext(PickupContext.class,i);
+		}
+		public RoomItemsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_roomItems; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof GameMapListener ) ((GameMapListener)listener).enterRoomItems(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof GameMapListener ) ((GameMapListener)listener).exitRoomItems(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof GameMapVisitor ) return ((GameMapVisitor<? extends T>)visitor).visitRoomItems(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final RoomItemsContext roomItems() throws RecognitionException {
+		RoomItemsContext _localctx = new RoomItemsContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_roomItems);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(113);
+			pickup();
+			setState(118);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__8) {
+				{
+				{
+				setState(114);
+				match(T__8);
+				setState(115);
+				pickup();
+				}
+				}
+				setState(120);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -754,7 +959,11 @@ public class GameMapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(119);
+=======
+			setState(121);
+>>>>>>> Stashed changes
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3932160L) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -778,7 +987,11 @@ public class GameMapParser extends Parser {
 	}
 
 	public static final String _serializedATN =
+<<<<<<< Updated upstream
 		"\u0004\u0001\u001az\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+=======
+		"\u0004\u0001\u001a|\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+>>>>>>> Stashed changes
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000"+
@@ -787,6 +1000,7 @@ public class GameMapParser extends Parser {
 		"\u0002\u0001\u0002\u0001\u0002\u0004\u0002\'\b\u0002\u000b\u0002\f\u0002"+
 		"(\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+<<<<<<< Updated upstream
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0003\u0003=\b\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u0003F\b\u0003\u0001\u0003"+
@@ -845,6 +1059,66 @@ public class GameMapParser extends Parser {
 		"\u0000\u0000\u0000uv\u0005\u0018\u0000\u0000v\u0011\u0001\u0000\u0000"+
 		"\u0000wx\u0007\u0000\u0000\u0000x\u0013\u0001\u0000\u0000\u0000\b\u001f"+
 		"(<ENTjp";
+=======
+		"\u0001\u0003\u0001\u0003\u0003\u00039\b\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u0003"+
+		"B\b\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0003\u0003K\b\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0003\u0003Q\b\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0005\u0005e\b\u0005"+
+		"\n\u0005\f\u0005h\t\u0005\u0001\u0006\u0005\u0006k\b\u0006\n\u0006\f\u0006"+
+		"n\t\u0006\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b\u0005\bu\b\b"+
+		"\n\b\f\bx\t\b\u0001\t\u0001\t\u0001\t\u0000\u0000\n\u0000\u0002\u0004"+
+		"\u0006\b\n\f\u000e\u0010\u0012\u0000\u0001\u0001\u0000\u0012\u0015z\u0000"+
+		"\u0014\u0001\u0000\u0000\u0000\u0002\u001a\u0001\u0000\u0000\u0000\u0004"+
+		"#\u0001\u0000\u0000\u0000\u0006,\u0001\u0000\u0000\u0000\bT\u0001\u0000"+
+		"\u0000\u0000\nf\u0001\u0000\u0000\u0000\fl\u0001\u0000\u0000\u0000\u000e"+
+		"o\u0001\u0000\u0000\u0000\u0010q\u0001\u0000\u0000\u0000\u0012y\u0001"+
+		"\u0000\u0000\u0000\u0014\u0015\u0005\u0001\u0000\u0000\u0015\u0016\u0005"+
+		"\u0002\u0000\u0000\u0016\u0017\u0003\u0002\u0001\u0000\u0017\u0018\u0003"+
+		"\u0004\u0002\u0000\u0018\u0019\u0005\u0003\u0000\u0000\u0019\u0001\u0001"+
+		"\u0000\u0000\u0000\u001a\u001b\u0005\u0004\u0000\u0000\u001b\u001d\u0005"+
+		"\u0002\u0000\u0000\u001c\u001e\u0003\u0006\u0003\u0000\u001d\u001c\u0001"+
+		"\u0000\u0000\u0000\u001e\u001f\u0001\u0000\u0000\u0000\u001f\u001d\u0001"+
+		"\u0000\u0000\u0000\u001f \u0001\u0000\u0000\u0000 !\u0001\u0000\u0000"+
+		"\u0000!\"\u0005\u0003\u0000\u0000\"\u0003\u0001\u0000\u0000\u0000#$\u0005"+
+		"\u0005\u0000\u0000$&\u0005\u0002\u0000\u0000%\'\u0003\b\u0004\u0000&%"+
+		"\u0001\u0000\u0000\u0000\'(\u0001\u0000\u0000\u0000(&\u0001\u0000\u0000"+
+		"\u0000()\u0001\u0000\u0000\u0000)*\u0001\u0000\u0000\u0000*+\u0005\u0003"+
+		"\u0000\u0000+\u0005\u0001\u0000\u0000\u0000,-\u0005\u0006\u0000\u0000"+
+		"-.\u0005\u0002\u0000\u0000./\u0005\u0007\u0000\u0000/0\u0005\b\u0000\u0000"+
+		"08\u0003\u000e\u0007\u000012\u0005\t\u0000\u000023\u0005\n\u0000\u0000"+
+		"34\u0005\b\u0000\u000045\u0005\u0002\u0000\u000056\u0003\u0010\b\u0000"+
+		"67\u0005\u0003\u0000\u000079\u0001\u0000\u0000\u000081\u0001\u0000\u0000"+
+		"\u000089\u0001\u0000\u0000\u00009A\u0001\u0000\u0000\u0000:;\u0005\t\u0000"+
+		"\u0000;<\u0005\u000b\u0000\u0000<=\u0005\b\u0000\u0000=>\u0005\u0002\u0000"+
+		"\u0000>?\u0003\f\u0006\u0000?@\u0005\u0003\u0000\u0000@B\u0001\u0000\u0000"+
+		"\u0000A:\u0001\u0000\u0000\u0000AB\u0001\u0000\u0000\u0000BJ\u0001\u0000"+
+		"\u0000\u0000CD\u0005\t\u0000\u0000DE\u0005\f\u0000\u0000EF\u0005\b\u0000"+
+		"\u0000FG\u0005\u0002\u0000\u0000GH\u0003\n\u0005\u0000HI\u0005\u0003\u0000"+
+		"\u0000IK\u0001\u0000\u0000\u0000JC\u0001\u0000\u0000\u0000JK\u0001\u0000"+
+		"\u0000\u0000KP\u0001\u0000\u0000\u0000LM\u0005\t\u0000\u0000MN\u0005\r"+
+		"\u0000\u0000NO\u0005\b\u0000\u0000OQ\u0005\u0017\u0000\u0000PL\u0001\u0000"+
+		"\u0000\u0000PQ\u0001\u0000\u0000\u0000QR\u0001\u0000\u0000\u0000RS\u0005"+
+		"\u0003\u0000\u0000S\u0007\u0001\u0000\u0000\u0000TU\u0005\u000e\u0000"+
+		"\u0000UV\u0005\u0002\u0000\u0000VW\u0005\u000f\u0000\u0000WX\u0005\b\u0000"+
+		"\u0000XY\u0005\u0018\u0000\u0000YZ\u0005\t\u0000\u0000Z[\u0005\u0010\u0000"+
+		"\u0000[\\\u0005\b\u0000\u0000\\]\u0005\u0018\u0000\u0000]^\u0005\t\u0000"+
+		"\u0000^_\u0005\u0011\u0000\u0000_`\u0005\b\u0000\u0000`a\u0005\u0018\u0000"+
+		"\u0000ab\u0005\u0003\u0000\u0000b\t\u0001\u0000\u0000\u0000ce\u0003\u0012"+
+		"\t\u0000dc\u0001\u0000\u0000\u0000eh\u0001\u0000\u0000\u0000fd\u0001\u0000"+
+		"\u0000\u0000fg\u0001\u0000\u0000\u0000g\u000b\u0001\u0000\u0000\u0000"+
+		"hf\u0001\u0000\u0000\u0000ik\u0003\u0012\t\u0000ji\u0001\u0000\u0000\u0000"+
+		"kn\u0001\u0000\u0000\u0000lj\u0001\u0000\u0000\u0000lm\u0001\u0000\u0000"+
+		"\u0000m\r\u0001\u0000\u0000\u0000nl\u0001\u0000\u0000\u0000op\u0005\u0018"+
+		"\u0000\u0000p\u000f\u0001\u0000\u0000\u0000qv\u0003\u0012\t\u0000rs\u0005"+
+		"\t\u0000\u0000su\u0003\u0012\t\u0000tr\u0001\u0000\u0000\u0000ux\u0001"+
+		"\u0000\u0000\u0000vt\u0001\u0000\u0000\u0000vw\u0001\u0000\u0000\u0000"+
+		"w\u0011\u0001\u0000\u0000\u0000xv\u0001\u0000\u0000\u0000yz\u0007\u0000"+
+		"\u0000\u0000z\u0013\u0001\u0000\u0000\u0000\t\u001f(8AJPflv";
+>>>>>>> Stashed changes
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

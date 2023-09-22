@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
 
 public class GraphBuilder extends GameMapBaseVisitor<Room> {
 
@@ -69,12 +70,15 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
             room.spawnWarChest(new WarChest("WarChest", pickupArray));
         }
 
-        GameMapParser.PickupContext pickupContext = ctx.pickup();
-        if(pickupContext != null) {
-            String itemType = pickupContext.getText();
-            System.out.println(itemType);
-            Pickup pickup = createNewItem(itemType);
-            room.addItemInRoom(pickup);
+        GameMapParser.RoomItemsContext roomItemsContext = ctx.roomItems();
+        if(roomItemsContext != null) {
+            List<GameMapParser.PickupContext> roomItems = roomItemsContext.pickup();
+            for(GameMapParser.PickupContext pickup : roomItems) {
+               String item = pickup.getText();
+               Pickup newPickup = createNewItem(item);
+               room.addItemInRoom(newPickup);
+            }
+
         }
 
         graph.addRoom(room);
@@ -112,13 +116,16 @@ public class GraphBuilder extends GameMapBaseVisitor<Room> {
             //Valuable Pickups
             case "Chalice" -> new Chalice(item, 20);
             case "Coin" -> new Coin(item, 2);
-            case "Gold bars" -> new Goldbars(item, 7);
+            case "Goldbars" -> new Goldbars(item, 7);
             case "Jewel" -> new Jewel(item, 10);
             case "Money Bag" -> new MoneyBag(item, 10);
             case "Ring" -> new Ring(item, 5);
             //Weapon pickups
             case "Sword" -> new Sword(item, 5, 10);
             case "Axe" -> new Axe(item, 7, 12);
+            //Keys
+            case "LockPick" -> new LockPick(item);
+            case "Key" -> new Key(item);
             default -> null;
         };
     }
