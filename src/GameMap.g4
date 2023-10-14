@@ -36,4 +36,4 @@ STRING : '"' ( ~["\n\r] )* '"' ;
 END_ROOM : 'true' | 'false' ;
 ID : [a-zA-Z][a-zA-Z0-9]* ;
 WS : [ \t\r\n]+ -> skip ;
-NEWLINE:'\r'? '\n' ;     // return newlines to parser (is end-statement signal)
+NEWLINE:'\r'? '\n' ;

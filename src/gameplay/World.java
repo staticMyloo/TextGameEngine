@@ -216,7 +216,6 @@ public class World {
         } else {
             System.out.println("Cannot flee! Final boss");
         }
-
     }
     private void handleAttackInput(Monster monster) {
 

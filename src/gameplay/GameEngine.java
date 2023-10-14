@@ -17,5 +17,4 @@ public class GameEngine
         Player playerOne = new Player("Sir Kendric",1000,50);
         world.play(playerOne);
     }
-
 }

@@ -55,7 +55,6 @@ public class Room extends Entity {
                 break;
             }
         }
-
     }
 
 
@@ -83,7 +82,6 @@ public class Room extends Entity {
 
     @Override
     public String toString() {
-        //return getRoomName().substring(4);
         return roomName;
     }
 
